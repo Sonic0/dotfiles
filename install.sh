@@ -102,7 +102,7 @@ case "$(uname)" in
     # git clone these dotfiles if not done yet
     if [ ! -d ~/dotfiles ]; then
         printf '\e[1mCloning dotfiles repo\e[0m\n'
-        git clone git@github.com:mastertinner/dotfiles.git ~/dotfiles #! CAMBIARE
+        git clone git@github.com:Sonic0/dotfiles.git ~/dotfiles
     fi
 
     # Install Stow if not installed
