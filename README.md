@@ -48,5 +48,5 @@ This setup uses a powerful combination of [Alacritty](https://github.com/jwilm/a
     **WARNING: This may install and/or remove software and change your configs!**
 
     ```shell
-    $ curl -s https://raw.githubusercontent.com/mastertinner/dotfiles/master/install.sh | sh
+    $ curl -s https://raw.githubusercontent.com/Sonic0/dotfiles/master/install.sh | sh
     ```
