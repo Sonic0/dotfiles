@@ -1,0 +1,6 @@
+/extra.Brewfile
+
+# Vifm creates additional files which need to be ignored
+vifm/.config/vifm/
+!vifm/.config/vifm/vifmrc
+!vifm/.config/vifm/colors
