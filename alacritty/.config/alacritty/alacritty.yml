@@ -13,29 +13,32 @@ font:
     x: 1
     y: 1
 
-# The quantum-black color scheme
+# The quantum color scheme
+# Copied from https://github.com/tyrannicaltoucan/vim-quantum/blob/master/term/xresources/quantum.xresources
 colors:
   primary:
-    background: "0x212120"
-    foreground: "0xbbbebf"
+    background: "#263238"
+    foreground: "#aebbc5"
+  cursor:
+    cursor: "#c5ced5"
   normal:
-    black: "0x464545"
-    red: "0xd97084"
-    green: "0x87bb7c"
-    yellow: "0xd5b874"
-    blue: "0x6face4"
-    magenta: "0xa389dd"
-    cyan: "0x68c5cd"
-    white: "0xbbbebf"
+    black: "#425762"
+    red: "#dd7186"
+    green: "#87bb7c"
+    yellow: "#d5b875"
+    blue: "#70ace5"
+    magenta: "#a48add"
+    cyan: "#69c5ce"
+    white: "#aebbc5"
   bright:
-    black: "0x696b6b"
-    red: "0xed8499"
-    green: "0x97d589"
-    yellow: "0xe9cb87"
-    blue: "0x87bff5"
-    magenta: "0xb9a0ee"
-    cyan: "0x7bdbe4"
-    white: "0xd0d2d2"
+    black: "#658494"
+    red: "#ed8499"
+    green: "#97d589"
+    yellow: "#e9cb88"
+    blue: "#87bff5"
+    magenta: "#b9a0ef"
+    cyan: "#7bdbe4"
+    white: "#c5ced5"
 
 key_bindings:
   - { key: Key0, mods: Command, action: ResetFontSize }
