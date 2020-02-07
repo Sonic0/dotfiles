@@ -163,6 +163,7 @@ case "$(uname)" in
         tmux \
         tree \
         typescript \
+        unclutter \
         vi \
         vifm \
         virtualenv \
