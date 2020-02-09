@@ -83,6 +83,29 @@ set nowb
 nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 
+" ================ Functions ======================
+
+" convert rows of numbers or text (as if pasted from excel column) to a tuple
+function! ToTupleFunction() range
+    silent execute a:firstline . “,” . a:lastline . “s/^/’/”
+    silent execute a:firstline . “,” . a:lastline . “s/$/’,/”
+    silent execute a:firstline . “,” . a:lastline . “join”
+    silent execute “normal I(“
+    silent execute “normal $xa)”
+"    silent execute “normal ggVGYY” "copy to clipboard, requires -> vnoremap YY "*y
+endfunction
+command! -range ToTuple <line1>,<line2> call ToTupleFunction()
+
+" convert rows of numbers or text (as if pasted from excel column) to an array
+function! ToArrayFunction() range
+    silent execute a:firstline . "," . a:lastline . "s/^/’/"
+    silent execute a:firstline . "," . a:lastline . "s/$/’,/"
+    silent execute a:firstline . "," . a:lastline . "join"
+    " these two lines below are different by only one character!
+    silent execute "normal I["
+    silent execute "normal $xa]"
+endfunction
+command! -range ToArray <line1>,<line2> call ToArrayFunction()
 
 " ================ Others ======================
 
