@@ -162,6 +162,7 @@ case "$(uname)" in
         tmate \
         tmux \
         tree \
+        ttf-fira-mono \
         typescript \
         unclutter \
         vi \
@@ -199,7 +200,8 @@ case "$(uname)" in
         siji-git \
         spotify \
         tflint \
-        ttf-monaco
+        # hadolint \
+        # origin-client \
 
     # In order to personalize Ubuntu with ZSH shell is mandatory:
     #   sudo apt-get install fonts-powerline ttf-ancient-fonts

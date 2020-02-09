@@ -15,6 +15,8 @@ source ~/.plugins.vimrc
 
 " Set color scheme
 colorscheme iceberg
+" Color scheme from Tobi
+"colorscheme quantum
 set guifont=DroidSansMono\ Nerd\ Font\ 11
 set fillchars+=vert:\$
 set background=dark

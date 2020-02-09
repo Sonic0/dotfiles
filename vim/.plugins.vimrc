@@ -13,6 +13,9 @@ Plug 'tpope/vim-sensible'
 
 " Colorscheme
 Plug 'cocopon/iceberg.vim'
+" Quantum color scheme from Tobi
+"Plug 'tyrannicaltoucan/vim-quantum'
+"let g:quantum_black=1
 
 " Goyo mode for focused writing
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
@@ -48,6 +51,7 @@ let g:DirDiffExcludes = ".git,node_modules,vendor,dist,.DS_Store,.*.swp"
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim', { 'on': 'GV' }
+Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 
 " Show Git indicators with line numbers
 Plug 'airblade/vim-gitgutter'
@@ -135,6 +139,7 @@ let g:rustfmt_autosave = 1
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': 'javascript' }
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
