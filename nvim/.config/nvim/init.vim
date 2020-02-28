@@ -1,12 +1,5 @@
-" Make Vim more useful.
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
-
-" ================ Plugins ====================
-
-source ~/.plugins.vimrc
+" Import plugins
+source ~/.config/nvim/plugins.vim
 
 " Many basic options are already set by the tpope/vim-sensible plugin
 
