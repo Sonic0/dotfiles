@@ -120,75 +120,75 @@ case "$(uname)" in
         ansible \
         ansible-lint \
         aws-cli \
-        base \
         base-devel \
+        bemenu \
         bluez \
         bluez-utils \
-        bspwm \
-        clipmenu \
+        brightnessctl \
         cmake \
         curl \
         diff-so-fancy \
         docker \
-        dmenu \
-        dunst \
         fd \
+        firefox \
         fwupd \
         fzf \
         git \
         gnupg \
         go \
         gopass \
+        grim \
         grub \
         htop \
-        iceweasel \
+        imv \
         iputils \
         jq \
+        kanshi \
         kubectl \
+        libimobiledevice \
+        libnotify \
         linux \
         linux-firmware \
         lolcat \
+        mako \
         man-db \
         mtr \
         mpv \
         neovim \
         networkmanager \
         nftables \
-        nitrogen \
         nodejs \
         npm \
         openssh \
+        otf-fira-mono \
+        otf-font-awesome \
         pacman-contrib \
         prettier \
         protobuf \
         python \
         python-pip \
         qemu \
-        redshift \
         ripgrep \
         ruby \
-        scrot \
         shellcheck \
+        slurp \
         sudo \
-        sxhkd \
-        sxiv \
+        sway \
+        swayidle \
+        swaylock \
         terraform \
         tlp \
+        tlp-rdw \
         tmate \
         tmux \
         tree \
-        ttf-fira-mono \
         typescript \
         udisks2 \
-        unclutter \
         vi \
         vifm \
         virtualenv \
-        vifm \
+        waybar \
         wget \
-        xorg-server \
-        xorg-xinit \
-        xorg-xrandr \
         zathura \
         zathura-pdf-poppler \
         zsh \
@@ -203,15 +203,12 @@ case "$(uname)" in
 
     yay -Syu --noconfirm --needed \
         awslogs \
-        betterlockscreen \
         dropbox \
         golangci-lint-bin \
         hadolint-bin \
         origin-client-bin \
-        polybar \
-        siji-git \
-        spotifyd \
-        spotify-tui \
+        spotifyd-bin \
+        spotify-tui-bin \
         tflint-bin
 
     # In order to personalize Ubuntu with ZSH shell is mandatory:
@@ -250,16 +247,6 @@ case "$(uname)" in
         mkdir -p ~/.node_modules/lib
         npm config set prefix ~/.node_modules
     fi
-
-    # Enable clipmenu
-    systemctl --user enable clipmenud.service --now
-
-    # Enable Dunst
-    systemctl --user enable dunst.service --now
-
-    # Configure betterlockscreen
-    betterlockscreen --update ~/.config/wallpapers/small-memory.jpg
-    systemctl enable "betterlockscreen@$USER"
     ;;
 
 # Default
