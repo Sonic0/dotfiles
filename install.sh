@@ -185,7 +185,7 @@ case "$(uname)" in
         python \
         python-pip \
         qemu \
-        redshift-wayland-git \
+        redshift-wlr-gamma-control-git \
         ripgrep \
         ruby \
         shellcheck \
