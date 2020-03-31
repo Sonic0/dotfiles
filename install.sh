@@ -130,10 +130,10 @@ case "$(uname)" in
         bemenu \
         bluez \
         bluez-utils \
-        brightnessctl \
         curl \
         diff-so-fancy \
         docker \
+        dnsutils \
         dropbox \
         efibootmgr \
         ethtool \
@@ -157,6 +157,7 @@ case "$(uname)" in
         kubectl \
         libimobiledevice \
         libnotify \
+        light \
         linux \
         linux-firmware \
         lolcat \
@@ -176,7 +177,8 @@ case "$(uname)" in
         otf-font-awesome \
         pacman-contrib \
         playerctl \
-        podman \
+        podman-compose \
+        podman-docker \
         prettier \
         protobuf \
         pulseaudio \
@@ -191,7 +193,7 @@ case "$(uname)" in
         shellcheck \
         slurp \
         smartmontools \
-        spotifyd-bin \
+        spotifyd-full-bin \
         spotify-tui-bin \
         sudo \
         sway \
@@ -206,6 +208,7 @@ case "$(uname)" in
         tree \
         typescript \
         udisks2 \
+        unzip \
         vi \
         vifm \
         virtualenv \
