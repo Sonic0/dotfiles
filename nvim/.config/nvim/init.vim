@@ -8,8 +8,8 @@ source ~/.config/nvim/plugins.vim
 
 " Set color scheme
 colorscheme iceberg
-" Color scheme from Tobi
-"colorscheme quantum
+"""" Color scheme from Tobi
+""""colorscheme quantum
 set guifont=DroidSansMono\ Nerd\ Font\ 11
 set fillchars+=vert:\$
 set background=dark
@@ -26,17 +26,16 @@ set termguicolors
 set hidden
 " No sounds
 "set visualbell
-" Disable Vim welcome message
-set shortmess=I
-" Use the OS clipboard by default.
-" Copied text from vim can be pasted by CTRL+V and copied text from CTRL+C can be pasted into vim with ‘p’.
-set clipboard=unnamed
-set clipboard=unnamedplus
 " Show the (partial) command as it is being typed
 set showcmd
 " Give more space for displaying messages.
 set cmdheight=2
 " Change mapleader
+" Disable Vim welcome message
+set shortmess=I
+" Use system clipboard
+set clipboard=unnamedplus
+" Set leader key
 let mapleader=","
 " Enable relative line numbers
 set relativenumber
@@ -47,6 +46,7 @@ set hlsearch
 " *-style searches continue to be consistently case-sensitive. 
 " Ignore case of searches
 set ignorecase
+" Use smart case for searching
 set smartcase
 " Do not reset cursor to start of line when moving around
 set nostartofline
@@ -55,7 +55,7 @@ set splitbelow
 set splitright
 " Soft wrapping of lines
 set wrap linebreak
-" Set spell check language to en_us
+" Set spell check language to US English
 set spelllang=en_us
 " Shows a $ sign at the end of each line and shows ^I instead of tabs
 set list
@@ -108,16 +108,15 @@ command! -range ToArray <line1>,<line2> call ToArrayFunction()
 
 " ================ Others ======================
 
-if has("autocmd")
-    " Strip trailing whitespaces on save
-    autocmd BufWritePre * %s/\s\+$//e
-    " Unify indentation on save
-    autocmd BufWritePre * retab
-    " Enable spell checking for certain file types
-    autocmd BufRead,BufNewFile *.md,*.tex setlocal spell
-endif
+" Preview for find-replace command
+set inccommand=split
 
-if has("nvim")
-    " Preview for find-replace command
-    set inccommand=split
-endif
+" Strip trailing whitespaces on save
+autocmd BufWritePre * %s/\s\+$//e
+" Unify indentation on save
+autocmd BufWritePre * retab
+" Enable spell checking for certain file types
+autocmd BufRead,BufNewFile *.md,*.tex setlocal spell
+
+" Shortcut to search whole project
+nnoremap \ :Rg<space>
