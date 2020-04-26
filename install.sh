@@ -72,7 +72,10 @@ case "$(uname)" in
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
     fi
 
-     # Set dark mode
+    # Install the Python NeoVim package
+    pip install --upgrade --user pynvim
+
+    # Set dark mode
     sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
     ;;
 
@@ -132,6 +135,7 @@ case "$(uname)" in
         binutils \
         bluez \
         bluez-utils \
+        clipman \
         curl \
         diff-so-fancy \
         docker \
@@ -154,6 +158,7 @@ case "$(uname)" in
         hadolint-bin \
         htop \
         imv \
+        informant \
         iputils \
         jq \
         kanshi \
@@ -170,10 +175,12 @@ case "$(uname)" in
         man-db \
         mtr \
         mpv \
+        ncdu \
         neovim \
         networkmanager \
         nftables \
         nodejs \
+        noto-fonts-cjk \
         noto-fonts-emoji \
         npm \
         openssh \
@@ -193,6 +200,7 @@ case "$(uname)" in
         pulsemixer \
         python \
         python-pip \
+        python-pynvim \
         qemu \
         redshift-wlr-gamma-control-git \
         ripgrep \
@@ -276,9 +284,6 @@ esac
 
 # Install the Python virtualenvwrapper package
 pip install --upgrade --user virtualenvwrapper
-
-# Install the Python NeoVim package
-pip install --upgrade --user pynvim
 
 # Install vim-plug
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
