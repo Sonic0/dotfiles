@@ -245,9 +245,10 @@ case "$(uname)" in
 
     # Install oh-my-zsh and themes
     if [ ! -d ~/.oh-my-zsh ]; then
+        printf '\e[1mIntalling oh-my-zsh\e[0m\n'
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-        wget https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -P /tmp &&
-          mv "/tmp/bullet-train.zsh-theme" "$ZSH_CUSTOM/themes/"
+        printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
     fi
     
     # Cloning tmp tmux plugin manager

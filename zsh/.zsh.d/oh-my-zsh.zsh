@@ -11,7 +11,7 @@ COMPLETION_WAITING_DOTS="true"
 
 
 export TERM="xterm-256color";
-export ZSH_THEME="bullet-train";
+export ZSH_THEME="powerlevel10k/powerlevel10k";
 BULLETTRAIN_PROMPT_ORDER=(
   time
   virtualenv
