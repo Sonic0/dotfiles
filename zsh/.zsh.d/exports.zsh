@@ -13,7 +13,17 @@ export VISUAL="${EDITOR}"
 export HISTCONTROL='ignoreboth';
 
 # Search only desired files with fzf
-export FZF_DEFAULT_COMMAND='rg --smart-case --files --no-ignore --hidden --follow --glob "!.DS_Store" --glob "!.git/*" --glob "!vendor/*" --glob "!node_modules/*" --glob "!.terraform/*" --glob "!bin/*" --glob "!build/*" --glob "!coverage/*" --glob "!dist/*" --glob "!target/*"'
+export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --no-ignore \
+    --exclude .git \
+    --exclude vendor \
+    --exclude node_modules \
+    --exclude .terraform \
+    --exclude target \
+    --exclude bin \
+    --exclude build \
+    --exclude dist \
+    --exclude coverage \
+    --exclude .DS_Store'
 
 # Time format
 export HISTTIMEFORMAT="%d/%m/%y %T"
