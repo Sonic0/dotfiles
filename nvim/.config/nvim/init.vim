@@ -32,6 +32,10 @@ set shortmess=I
 " Copied text from vim can be pasted by CTRL+V and copied text from CTRL+C can be pasted into vim with ‘p’.
 set clipboard=unnamed
 set clipboard=unnamedplus
+" Show the (partial) command as it is being typed
+set showcmd
+" Give more space for displaying messages.
+set cmdheight=2
 " Change mapleader
 let mapleader=","
 " Enable relative line numbers

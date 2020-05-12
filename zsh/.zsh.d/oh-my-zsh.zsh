@@ -45,4 +45,6 @@ plugins=(
 	virtualenvwrapper
 	)
 
+source "${ZSH}/oh-my-zsh.sh"
+
 zstyle ':completion:*' rehash true

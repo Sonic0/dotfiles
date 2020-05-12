@@ -223,8 +223,8 @@ case "$(uname)" in
     # Install oh-my-zsh and themes
     if [ ! -d ~/.oh-my-zsh ]; then
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-        (wget https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -P /tmp \ 
-            && mv "/tmp/bullet-train.zsh-theme" "$ZSH_CUSTOM/themes/")
+        wget https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -P /tmp &&
+          mv "/tmp/bullet-train.zsh-theme" "$ZSH_CUSTOM/themes/"
     fi
     
     # Cloning tmp tmux plugin manager
