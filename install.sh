@@ -140,7 +140,6 @@ case "$(uname)" in
         diff-so-fancy \
         docker \
         dnsutils \
-        dropbox \
         efibootmgr \
         ethtool \
         eslint \
@@ -204,6 +203,7 @@ case "$(uname)" in
         python-pip \
         python-pynvim \
         qemu \
+        rclone \
         redshift-wlr-gamma-control-git \
         ripgrep \
         ruby \
