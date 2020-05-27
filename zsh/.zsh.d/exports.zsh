@@ -44,3 +44,8 @@ export NVM_DIR="${HOME}/.nvm"
 # Python virtualenvwrapper
 export WORKON_HOME="$HOME/.virtualenvs"
 export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
+
+# Enable Wayland Firefox globally
+if [[ ! -z "${WAYLAND_DISPLAY}" ]]; then
+    export MOZ_ENABLE_WAYLAND=1
+fi
