@@ -43,6 +43,7 @@ endfunction
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 nnoremap <C-P> :Files<cr>
+nnoremap \ :Rg<space>
 
 " Diff directories
 Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
