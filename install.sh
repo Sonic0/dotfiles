@@ -139,6 +139,7 @@ case "$(uname)" in
         curl \
         diff-so-fancy \
         docker \
+        docker-compose \
         dnsutils \
         efibootmgr \
         ethtool \
@@ -192,8 +193,6 @@ case "$(uname)" in
         pacman-contrib \
         pkgconf \
         playerctl \
-        podman-compose \
-        podman-docker \
         prettier \
         protobuf \
         pulseaudio \
