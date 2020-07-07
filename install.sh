@@ -72,7 +72,7 @@ case "$(uname)" in
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
     fi
 
-    # Install the Python NeoVim package
+    # Install the Python Neovim package
     pip install --upgrade --user pynvim
 
     # Set dark mode
