@@ -202,9 +202,9 @@ case "$(uname)" in
         python \
         python-pip \
         python-pynvim \
+        python-virtualenvwrapper \
         qemu \
         rclone \
-        redshift-wlr-gamma-control-git \
         ripgrep \
         ruby \
         sed \
@@ -230,7 +230,6 @@ case "$(uname)" in
         unzip \
         vi \
         vifm \
-        virtualenv \
         waybar \
         wf-recorder \
         wget \
