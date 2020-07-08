@@ -238,8 +238,7 @@ case "$(uname)" in
         wl-clipboard \
         zathura \
         zathura-pdf-poppler \
-        zsh \
-        zsh-completions
+        zsh
 
     # In order to personalize Ubuntu with ZSH shell is mandatory:
     #   sudo apt-get install fonts-powerline ttf-ancient-fonts
@@ -252,14 +251,26 @@ case "$(uname)" in
 
     # Cloning oh-my-zsh plugins and themes
     if [ -d ~/.oh-my-zsh ]; then
-        printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-        printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-        printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
-        printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k ]; then
+            printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
+            git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+        fi
+        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
+            printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
+            git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        fi
+        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm ]; then
+            printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
+            git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
+        fi
+        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
+            printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
+            git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        fi
+        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions ]; then
+            printf '\e[1mCloning zsh-completions plugin for oh-my-zsh\e[0m\n'
+            git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+        fi
     fi
 
     # Cloning tmp tmux plugin manager
