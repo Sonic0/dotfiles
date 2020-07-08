@@ -32,14 +32,8 @@ export HISTTIMEFORMAT="%d/%m/%y %T"
 # https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
 export GPG_TTY="$(tty)"
 
-------------------------------
-
-# NVM
-
 # Nvm directory
 export NVM_DIR="${HOME}/.nvm"
-
-# PYTHON-VENV
 
 # Python virtualenvwrapper
 export WORKON_HOME="$HOME/.virtualenvs"

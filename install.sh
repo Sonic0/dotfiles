@@ -242,14 +242,24 @@ case "$(uname)" in
     # In order to personalize Ubuntu with ZSH shell is mandatory:
     #   sudo apt-get install fonts-powerline ttf-ancient-fonts
 
-    # Install oh-my-zsh and themes
+    # Install oh-my-zsh
     if [ ! -d ~/.oh-my-zsh ]; then
         printf '\e[1mIntalling oh-my-zsh\e[0m\n'
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
+
+    # Cloning oh-my-zsh plugins and themes
+    if [ -d ~/.oh-my-zsh ]; then
         printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+        printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
+        printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     fi
-    
+
     # Cloning tmp tmux plugin manager
     if [ ! -x "$(command -v tmux)" ]; then
         printf '\e[1mCloning Tmux TMP plugin manager\e[0m\n'
@@ -285,8 +295,6 @@ case "$(uname)" in
     ;;
 esac
 
-# Install the Python virtualenvwrapper package
-pip install --upgrade --user virtualenvwrapper
 
 # Install vim-plug
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
