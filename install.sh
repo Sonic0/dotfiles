@@ -130,6 +130,7 @@ case "$(uname)" in
         ansible-lint \
         aws-cli \
         awslogs \
+        bat \
         base \
         base-devel \
         bemenu \
@@ -144,6 +145,7 @@ case "$(uname)" in
         efibootmgr \
         ethtool \
         eslint \
+        exa \
         fd \
         firefox \
         fwupd \
@@ -294,11 +296,6 @@ case "$(uname)" in
     exit 1
     ;;
 esac
-
-
-# Install vim-plug
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install rustup
 if [ ! -x "$(command -v rustup)" ]; then
