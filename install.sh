@@ -181,6 +181,7 @@ case "$(uname)" in
         mtr \
         mpv \
         ncdu \
+        neofetch \
         neovim \
         networkmanager \
         nftables \
