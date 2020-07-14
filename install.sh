@@ -133,7 +133,6 @@ case "$(uname)" in
         bat \
         base \
         base-devel \
-        bemenu \
         bluez \
         bluez-utils \
         clipman \
@@ -238,6 +237,7 @@ case "$(uname)" in
         wget \
         whois \
         wl-clipboard \
+        wofi \
         zathura \
         zathura-pdf-poppler \
         zsh
