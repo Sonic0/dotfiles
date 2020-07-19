@@ -149,6 +149,7 @@ case "$(uname)" in
         firefox \
         fwupd \
         fzf \
+        gammastep \
         gimp \
         git \
         github-cli-bin \
