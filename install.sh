@@ -133,6 +133,7 @@ case "$(uname)" in
         bat \
         base \
         base-devel \
+        bind \
         bluez \
         bluez-utils \
         clipman \
@@ -140,7 +141,6 @@ case "$(uname)" in
         diff-so-fancy \
         docker \
         docker-compose \
-        dnsutils \
         efibootmgr \
         ethtool \
         eslint \
