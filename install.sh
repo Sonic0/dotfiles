@@ -142,8 +142,8 @@ case "$(uname)" in
         docker \
         docker-compose \
         efibootmgr \
-        ethtool \
         eslint \
+        ethtool \
         exa \
         fd \
         firefox \
@@ -186,6 +186,7 @@ case "$(uname)" in
         neovim \
         networkmanager \
         nftables \
+        nikto \
         nodejs \
         noto-fonts-cjk \
         noto-fonts-emoji \
@@ -221,6 +222,7 @@ case "$(uname)" in
         sway \
         swayidle \
         swaylock \
+        termshark \
         terraform \
         tflint-bin \
         tlp \
