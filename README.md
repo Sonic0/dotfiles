@@ -1,6 +1,6 @@
 # Dotfiles
 
-This repository is forked from [mastertinner/dotfiles](https://github.com/mastertinner/dotfiles) and customized with my configurations.
+This repository is forked from [mastertinner/dotfiles](https://github.com/mastertinner/dotfiles) and customized with my own configurations.
 
 I mainly work with [Go](https://golang.org), [Rust](https://www.rust-lang.org), [JavaScript](https://en.wikipedia.org/wiki/JavaScript), [TypeScript](https://www.typescriptlang.org), [Markdown](https://en.wikipedia.org/wiki/Markdown) and [shell scripts](https://en.wikipedia.org/wiki/Shell_script) so my setup is geared towards working with these technologies.
 
