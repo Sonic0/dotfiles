@@ -93,7 +93,7 @@ case "$(uname)" in
 
     # Install Nvm
     if [ ! -d ~/.nvm ]; then
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
     fi
 
     # git clone these dotfiles if not done yet
