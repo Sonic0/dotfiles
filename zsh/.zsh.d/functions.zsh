@@ -217,6 +217,12 @@ pacu() {
         processes+=("$!")
     fi
 
+    # nvm
+    if [ -x "$(command -v npm)" ]; then
+        printf '\e[1mUpdating nvm (Node Version Manager)\e[0m\n'
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
+    fi
+
     # npm
     if [ -x "$(command -v npm)" ]; then
         printf '\e[1mUpdating globally installed npm packages\e[0m\n'
@@ -248,12 +254,19 @@ pacu() {
         nvim --headless -c 'UpdateRemotePlugins | qa'
     fi
 
+    # oh-my-zsh
+    if [ -n "${ZSH}" ] && [ "${ZSH}" == "${HOME}/.oh-my-zsh" ]; then
+        printf '\e[1mUpdating oh-my-zsh framework\e[0m\n'
+        (omz update) &
+        processes+=("$!")
+    fi
+
     # Wait for all processes to finish
     for p in ${processes[*]}; do
         wait "$p"
     done
 
-    # command --> upgrade_oh_my_zsh
+    # commands --> ...
 
     printf '\e[1mSystem update finished\e[0m\n'
 }
