@@ -1,0 +1,8 @@
+ansible
+ansible-lint
+awslogs
+cfn-lint
+checkov
+pynvim
+virtualenvwrapper
+yamllint

@@ -2,9 +2,10 @@
 
 This repository is forked from [mastertinner/dotfiles](https://github.com/mastertinner/dotfiles) and customized with my own configurations.
 
-I mainly work with [Go](https://golang.org), [Rust](https://www.rust-lang.org), [JavaScript](https://en.wikipedia.org/wiki/JavaScript), [TypeScript](https://www.typescriptlang.org), [Markdown](https://en.wikipedia.org/wiki/Markdown) and [shell scripts](https://en.wikipedia.org/wiki/Shell_script) so my setup is geared towards working with these technologies.
+I mainly work with [Python](https://python.org), [shell scripts](https://en.wikipedia.org/wiki/Shell_script) so my setup is geared towards working with these technologies.
+Other languages  [Rust](https://www.rust-lang.org), [JavaScript](https://en.wikipedia.org/wiki/JavaScript), [TypeScript](https://www.typescriptlang.org).
 
-Supported operating systems are macOS and Arch Linux (and its derivates).
+Supported operating systems are macOS, Arch Linux and Ubuntu (and their derivates).
 
 ## Features and Usage
 
@@ -34,7 +35,7 @@ Text editing is based on [Neovim](https://neovim.io/) configured to be an "IDE".
 
 ## Installation
 
-1. Clone this repo to `~/dotfiles` by running `git clone git@github.com:mastertinner/dotfiles.git ~/dotfiles`
+1. Clone this repo to `~/dotfiles` by running `git clone git@github.com:Sonic0/dotfiles.git ~/dotfiles`
 1. Change the name and email address in `git/.gitconfig`
 1. macOS only: Change `Brewfile` to your liking or add `extra.Brewfile` for independent packages per machine
 1. macOS only: If you have apps installed which you didn't install through `brew cask` but that you now added to `Brewfile` as `cask`, you need to reinstall them with `brew cask install <name> --force` so `cask` knows it's supposed to manage these apps.

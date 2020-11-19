@@ -154,5 +154,8 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 " nginx
 Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 
+" tmux.conf highlight
+Plug 'tmux-plugins/vim-tmux'
+
 " Initialize plugin system
 call plug#end()

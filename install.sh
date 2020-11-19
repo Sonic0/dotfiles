@@ -5,8 +5,18 @@
 set -e -u
 
 printf '\e[1mInstalling dotfiles\e[0m\n'
+# Recognize OS
+OS="$(uname)"
+if [ "${OS}" = "Linux" ] && [ -x "$(command -v apt)" ]; then
+    DISTRO="Ubuntu"
+elif [ "${OS}" = "Linux" ] && [ -x "$(command -v pacman)" ]; then
+    DISTRO="ArchLinux"
+else
+    printf '\e[1mUbuntu, Arch Linux and Darwin are the only Linux distros currently supported for automated setup\e[0m\n'
+    exit 1
+fi
 
-case "$(uname)" in
+case "${DISTRO:-OS}" in
 
 # On Linux, use the respective package manager
 'Darwin')
@@ -79,21 +89,12 @@ case "$(uname)" in
     sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
     ;;
 
-'Linux')
-    if [ ! -x "$(command -v pacman)" ]; then
-        printf '\e[1mArch Linux is the only distro currently supported for automated setup\e[0m\n'
-        exit 1
-    fi
+'ArchLinux')
 
     # Install Git if not installed
     if [ ! -x "$(command -v git)" ]; then
         printf '\e[1mInstalling Git\e[0m\n'
         sudo pacman -Syu git --noconfirm --needed
-    fi
-
-    # Install Nvm
-    if [ ! -d ~/.nvm ]; then
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
     fi
 
     # git clone these dotfiles if not done yet
@@ -156,7 +157,6 @@ case "$(uname)" in
         gnupg \
         go \
         golangci-lint-bin \
-        gopass \
         grim \
         gron-bin \
         grub \
@@ -175,22 +175,21 @@ case "$(uname)" in
         light \
         linux \
         linux-firmware \
-        lolcat \
+        lnav \
         make \
         mako \
         man-db \
         mtr \
         mpv \
         ncdu \
-        neofetch \
         neovim \
         networkmanager \
         nftables \
-        nikto \
         nodejs \
         noto-fonts-cjk \
         noto-fonts-emoji \
         npm \
+        nvm \
         openssh \
         otf-fira-mono \
         otf-font-awesome \
@@ -198,7 +197,6 @@ case "$(uname)" in
         pkgconf \
         playerctl \
         prettier \
-        protobuf \
         pulseaudio \
         pulseaudio-alsa \
         pulseaudio-bluetooth \
@@ -241,54 +239,43 @@ case "$(uname)" in
         whois \
         wl-clipboard \
         wofi \
+        yamllint \
         zathura \
         zathura-pdf-poppler \
         zsh
 
-    # In order to personalize Ubuntu with ZSH shell is mandatory:
-    #   sudo apt-get install fonts-powerline ttf-ancient-fonts
-
     # Install oh-my-zsh
     if [ ! -d ~/.oh-my-zsh ]; then
-        printf '\e[1mIntalling oh-my-zsh\e[0m\n'
+        printf '\e[1mInstalling oh-my-zsh\e[0m\n'
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     fi
 
     # Cloning oh-my-zsh plugins and themes
-    if [ -d ~/.oh-my-zsh ]; then
-        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k ]; then
-            printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
-            git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-        fi
-        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
-            printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
-            git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-        fi
-        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm ]; then
-            printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
-            git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
-        fi
-        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
-            printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
-            git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-        fi
-        if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions ]; then
-            printf '\e[1mCloning zsh-completions plugin for oh-my-zsh\e[0m\n'
-            git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
-        fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/themes/powerlevel10k ]; then
+        printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting ]; then
+        printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm ]; then
+        printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions ]; then
+        printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-completions ]; then
+        printf '\e[1mCloning zsh-completions plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/zsh-completions
     fi
 
     # Cloning tmp tmux plugin manager
     if [ ! -x "$(command -v tmux)" ]; then
         printf '\e[1mCloning Tmux TMP plugin manager\e[0m\n'
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    fi
-
-    # Install Patched fonts for Powerline users - fonts-powerline
-    if [ ! -x "$(command -v git)" ]; then
-        printf '\e[1mInstalling fonts-powerline\e[0m\n'
-        git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts
-        (cd /tmp/fonts && ./install.sh)
     fi
 
     # Enable docker service and allow user to run it without sudo
@@ -306,6 +293,180 @@ case "$(uname)" in
     fi
     ;;
 
+'Ubuntu')
+
+    # Install Git if not installed
+    if [ ! -x "$(command -v git)" ]; then
+        printf '\e[1mInstalling Git\e[0m\n'
+        sudo apt install git --quiet --y
+    fi
+
+    # git clone these dotfiles if not done yet
+    if [ ! -d ~/dotfiles ]; then
+        printf '\e[1mCloning dotfiles repo\e[0m\n'
+        git clone git@github.com:Sonic0/dotfiles.git ~/dotfiles
+    fi
+
+    # Install Stow if not installed
+    printf '\e[1mLinking dotfiles to your home directory\e[0m\n'
+    sudo apt install stow --quiet --yes
+    # Remove existing config files
+    if [ -f ~/.zshrc ]; then
+        rm ~/.zshrc
+    fi
+    # Stow subdirectories of dotfiles
+    for dir in ~/dotfiles/*/; do
+        stow --dir ~/dotfiles "$(basename "${dir}")"
+    done
+    sudo apt remove stow --yes
+
+    # Install tools
+    printf '\e[1mInstalling desired tools and apps\e[0m\n'
+    sudo apt update && sudo apt install --quiet --yes \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        ethtool \
+        fd-find \
+        firefox \
+        fonts-noto-cjk \
+        fonts-noto-color-emoji \
+        fwupd \
+        fzf \
+        gimp \
+        git \
+        gnupg \
+        gnupg-agent \
+        htop \
+        jq \
+        libnotify-bin \
+        lnav \
+        man-db \
+        mtr-tiny \
+        ncdu \
+        neovim \
+        nftables \
+        openssh-client \
+        python3-pip \
+        pulsemixer \
+        rclone \
+        ripgrep \
+        sed \
+        shellcheck \
+        smartmontools \
+        software-properties-common \
+        termshark \
+        tlp \
+        tlp-rdw \
+        tmate \
+        tmux \
+        tree \
+        ttf-ancient-fonts \
+        unzip \
+        vim \
+        vifm \
+        vlc \
+        wget \
+        whois \
+        zathura \
+        zathura-pdf-poppler \
+        zsh
+
+    # Install oh-my-zsh
+    if [ ! -d ~/.oh-my-zsh ]; then
+        printf '\e[1mInstalling oh-my-zsh\e[0m\n'
+        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
+
+    # Cloning oh-my-zsh plugins and themes
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/themes/powerlevel10k ]; then
+        printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting ]; then
+        printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm ]; then
+        printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions ]; then
+        printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-completions ]; then
+        printf '\e[1mCloning zsh-completions plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/zsh-completions
+    fi
+
+    # Cloning tmp tmux plugin manager
+    if [ ! -x "$(command -v tmux)" ]; then
+        printf '\e[1mCloning Tmux TMP plugin manager\e[0m\n'
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
+
+    # Install Docker
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo apt-key fingerprint 0EBFCD88
+    sudo add-apt-repository \
+        "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) \
+        stable"
+    sudo apt update && sudo apt install --yes docker-ce docker-ce-cli containerd.io
+
+    # Enable docker service and allow user to run it without sudo
+    sudo systemctl enable docker.service
+    getent group docker || groupadd docker
+    sudo usermod -aG docker "${USER}"
+
+    # Install Nvm
+    if [ ! -d ~/.nvm ]; then
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
+    fi
+
+    # Change npm folder
+    if [ -x "$(command -v npm)" ]; then
+        mkdir -p ~/.node_modules/lib
+        npm config set prefix ~/.node_modules
+    fi
+
+    # Install Python packages
+    if [ -x "$(command -v python3)" ] && [ -x "$(command -v python3 -m pip)" ]; then
+        python3 -m pip install --user -r python_requirements.txt
+    else
+        printf '\e[91mPlease install or update your Python version\e[0m\n'
+    fi
+
+    # Install aws-cli v2
+    if [ ! -x "$(command -v aws)" ]; then
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        (unzip awscliv2.zip && sudo ./aws/install && rm -rf aws awscliv2.zip)
+    fi
+
+    printf "\e[1mIt wasn't worth installing Ubuntu... now you have to install those packages manually ¯\_(ツ)_/¯\e[0m\n
+    | alacritty | https://github.com/alacritty/alacritty  | Cargo |
+    | bat | https://github.com/sharkdp/bat | Cargo |
+    | diff-so-fancy | https://github.com/so-fancy/diff-so-fancy | npm/Source |
+    | exa | https://github.com/ogham/exa#installation | Cargo |
+    | github-cli | https://github.com/cli/cli/blob/trunk/docs/install_linux.md | Shell |
+    | go | https://golang.org/dl/ | Shell |
+    | gogh | https://github.com/Mayccoll/Gogh | Shell |
+    | golang-lint | https://golangci-lint.run/usage/install/#local-installation | Shell |
+    | gron | https://github.com/tomnomnom/gron | Shell |
+    | trivy | https://github.com/aquasecurity/trivy | Shell |
+    | iputils | https://github.com/iputils/iputils | Shell |
+    | kubectl | https://kubernetes.io/docs/tasks/tools/install-kubectl | Shell |
+    | kubectx | https://github.com/ahmetb/kubectx | Shell |
+    | nerd-font |https://github.com/ryanoasis/nerd-fonts | Shell |
+    | spotify-tui | https://github.com/Rigellute/spotify-tui | Snap/Cargo |
+    | svgo | https://github.com/svg/svgo | Snap/Cargo |
+    | terraform | https://www.terraform.io/docs/cli/install/apt.html | Shell |
+    | tflint | https://github.com/terraform-linters/tflint | Shell |
+    | Typescript | https://www.typescriptlang.org | npm |
+    | wf-recorder | https://github.com/ammen99/wf-recorder | Shell |\n"
+    ;;
+
 # Default
 *)
     printf '\e[1mOS not supported for automated setup. Please install manually.\e[0m\n'
@@ -315,8 +476,8 @@ esac
 
 # Install rustup
 if [ ! -x "$(command -v rustup)" ]; then
-    printf '\e[1mInstalling Rust\e[0m\n'
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    . $HOME/.cargo/env
     rustup component add rls rust-analysis rust-src rustfmt clippy
 fi
 

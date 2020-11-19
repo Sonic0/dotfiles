@@ -13,16 +13,16 @@ fcd() {
 # Edit a firectory or a file using fuzzy search
 fe() {
     local target fzf_cmd
-    fzf_cmd='fd --follow --hidden --no-ignore \
-        --exclude .git \
-        --exclude vendor \
-        --exclude node_modules \
-        --exclude .terraform \
-        --exclude target \
-        --exclude bin \
-        --exclude build \
-        --exclude dist \
-        --exclude coverage \
+    fzf_cmd='fd --follow --hidden --no-ignore
+        --exclude .git
+        --exclude vendor
+        --exclude node_modules
+        --exclude .terraform
+        --exclude target
+        --exclude bin
+        --exclude build
+        --exclude dist
+        --exclude coverage
         --exclude .DS_Store'
     target=$(eval $fzf_cmd | fzf +m) &&
     if [ -d "$target" ]; then
@@ -218,9 +218,10 @@ pacu() {
     fi
 
     # nvm
-    if [ -x "$(command -v npm)" ]; then
+    if [ -x "$(command -v nvm)" ]; then
         printf '\e[1mUpdating nvm (Node Version Manager)\e[0m\n'
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
+        (cd "${NVM_DIR}" && git pull) &
+        processes+=("$!")
     fi
 
     # npm
