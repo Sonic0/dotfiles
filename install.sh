@@ -139,7 +139,7 @@ case "${DISTRO:-OS}" in
         bluez-utils \
         clipman \
         curl \
-        diff-so-fancy \
+        git-delta \
         docker \
         docker-compose \
         efibootmgr \
@@ -253,23 +253,23 @@ case "${DISTRO:-OS}" in
     # Cloning oh-my-zsh plugins and themes
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/themes/powerlevel10k ]; then
         printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k"
     fi
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting ]; then
         printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
     fi
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm ]; then
         printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm
+        git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm"
     fi
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions ]; then
         printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
     fi
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-completions ]; then
         printf '\e[1mCloning zsh-completions plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/zsh-completions
+        git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions"
     fi
 
     # Cloning tmp tmux plugin manager
@@ -447,7 +447,7 @@ case "${DISTRO:-OS}" in
     printf "\e[1mIt wasn't worth installing Ubuntu... now you have to install those packages manually ¯\_(ツ)_/¯\e[0m\n
     | alacritty | https://github.com/alacritty/alacritty  | Cargo |
     | bat | https://github.com/sharkdp/bat | Cargo |
-    | diff-so-fancy | https://github.com/so-fancy/diff-so-fancy | npm/Source |
+    | delta | https://github.com/dandavison/delta | Cargo |
     | exa | https://github.com/ogham/exa#installation | Cargo |
     | github-cli | https://github.com/cli/cli/blob/trunk/docs/install_linux.md | Shell |
     | go | https://golang.org/dl/ | Shell |
