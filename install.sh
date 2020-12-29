@@ -227,6 +227,7 @@ case "${DISTRO:-OS}" in
         tlp-rdw \
         tmate \
         tmux \
+        topgrade \
         tree \
         typescript \
         udisks2 \
@@ -449,6 +450,7 @@ case "${DISTRO:-OS}" in
     | bat | https://github.com/sharkdp/bat | Cargo |
     | delta | https://github.com/dandavison/delta | Cargo |
     | exa | https://github.com/ogham/exa#installation | Cargo |
+    | topgrade | https://github.com/r-darwish/topgrade | Cargo |
     | github-cli | https://github.com/cli/cli/blob/trunk/docs/install_linux.md | Shell |
     | go | https://golang.org/dl/ | Shell |
     | gogh | https://github.com/Mayccoll/Gogh | Shell |
