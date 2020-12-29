@@ -40,6 +40,6 @@ export WORKON_HOME="$HOME/.virtualenvs"
 export VIRTUALENVWRAPPER_PYTHON="$(command -v python3)"
 
 # Enable Wayland Firefox globally
-if [[ ! -z "${WAYLAND_DISPLAY}" ]]; then
+if [[ -n "${WAYLAND_DISPLAY}" ]]; then
     export MOZ_ENABLE_WAYLAND=1
 fi
