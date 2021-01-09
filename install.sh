@@ -7,7 +7,7 @@ set -e -u
 printf '\e[1mInstalling dotfiles\e[0m\n'
 # Recognize OS
 OS="$(uname)"
-if [ "${OS}" = "Linux" ] && [ -x "$(command -v apt)" ]; then
+if [ "${OS}" = "Linux" ] && [ -x "$(command -v lsb_release)" ] && [ "$(lsb_release -i -s)" = "Ubuntu" ]; then
     DISTRO="Ubuntu"
 elif [ "${OS}" = "Linux" ] && [ -x "$(command -v pacman)" ]; then
     DISTRO="ArchLinux"
