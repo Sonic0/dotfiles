@@ -142,6 +142,7 @@ case "${DISTRO:-OS}" in
         git-delta \
         docker \
         docker-compose \
+        dropbox \
         efibootmgr \
         eslint \
         ethtool \
@@ -166,6 +167,7 @@ case "${DISTRO:-OS}" in
         informant \
         inkscape \
         iputils \
+        jpegoptim \
         jq \
         kanshi \
         kubectl \
@@ -181,36 +183,43 @@ case "${DISTRO:-OS}" in
         man-db \
         mtr \
         mpv \
+        nancy-bin \
         ncdu \
         neovim \
         networkmanager \
         nftables \
+        nikto \
+        nmap \
         nodejs \
         noto-fonts-cjk \
         noto-fonts-emoji \
         npm \
         nvm \
         openssh \
+        optipng \
         otf-fira-mono \
         otf-font-awesome \
         pacman-contrib \
-        pkgconf \
+        pacmanfile \
+        pipewire \
         playerctl \
+        podman-compose \
         prettier \
         pulseaudio \
         pulseaudio-alsa \
         pulseaudio-bluetooth \
         pulsemixer \
+        pwgen \
         python \
         python-pip \
         python-pynvim \
         python-virtualenvwrapper \
         qemu \
-        rclone \
         ripgrep \
         ruby \
         sed \
         shellcheck \
+        signal-desktop \
         slurp \
         smartmontools \
         spotifyd \
@@ -222,6 +231,7 @@ case "${DISTRO:-OS}" in
         swaylock \
         termshark \
         terraform \
+        terraform-lsp-bin \
         tflint-bin \
         tlp \
         tlp-rdw \
@@ -232,7 +242,6 @@ case "${DISTRO:-OS}" in
         typescript \
         udisks2 \
         unzip \
-        vi \
         vifm \
         waybar \
         wf-recorder \
@@ -240,7 +249,10 @@ case "${DISTRO:-OS}" in
         whois \
         wl-clipboard \
         wofi \
+        xdg-desktop-portal-wlr \
+        xorg-xwayland \
         yamllint \
+        yq \
         zathura \
         zathura-pdf-poppler \
         zsh
