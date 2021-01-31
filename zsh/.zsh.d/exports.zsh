@@ -42,4 +42,5 @@ export VIRTUALENVWRAPPER_PYTHON="$(command -v python3)"
 # Enable Wayland Firefox globally
 if [[ -n "${WAYLAND_DISPLAY}" ]]; then
     export MOZ_ENABLE_WAYLAND=1
+    export XDG_CURRENT_DESKTOP=sway
 fi

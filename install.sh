@@ -123,139 +123,18 @@ case "${DISTRO:-OS}" in
         (cd /tmp/paru && makepkg -si)
     fi
 
-    # Install tools
-    printf '\e[1mInstalling desired tools and apps\e[0m\n'
-    paru -Syu --noconfirm --needed \
-        alacritty \
-        ansible \
-        ansible-lint \
-        aws-cli \
-        awslogs \
-        bat \
-        base \
-        base-devel \
-        bind \
-        bluez \
-        bluez-utils \
-        clipman \
-        curl \
-        git-delta \
-        docker \
-        docker-compose \
-        dropbox \
-        efibootmgr \
-        eslint \
-        ethtool \
-        exa \
-        fd \
-        firefox \
-        fwupd \
-        fzf \
-        gammastep \
-        gimp \
-        git \
-        github-cli \
-        gnupg \
-        go \
-        golangci-lint-bin \
-        grim \
-        gron-bin \
-        grub \
-        hadolint-bin \
-        htop \
-        imv \
-        informant \
-        inkscape \
-        iputils \
-        jpegoptim \
-        jq \
-        kanshi \
-        kubectl \
-        kubectx \
-        libimobiledevice \
-        libnotify \
-        light \
-        linux \
-        linux-firmware \
-        lnav \
-        make \
-        mako \
-        man-db \
-        mtr \
-        mpv \
-        nancy-bin \
-        ncdu \
-        neovim \
-        networkmanager \
-        nftables \
-        nikto \
-        nmap \
-        nodejs \
-        noto-fonts-cjk \
-        noto-fonts-emoji \
-        npm \
-        nvm \
-        openssh \
-        optipng \
-        otf-fira-mono \
-        otf-font-awesome \
-        pacman-contrib \
-        pacmanfile \
-        pipewire \
-        playerctl \
-        podman-compose \
-        prettier \
-        pulseaudio \
-        pulseaudio-alsa \
-        pulseaudio-bluetooth \
-        pulsemixer \
-        pwgen \
-        python \
-        python-pip \
-        python-pynvim \
-        python-virtualenvwrapper \
-        qemu \
-        ripgrep \
-        ruby \
-        sed \
-        shellcheck \
-        signal-desktop \
-        slurp \
-        smartmontools \
-        spotifyd \
-        spotify-tui-bin \
-        sudo \
-        svgo \
-        sway \
-        swayidle \
-        swaylock \
-        termshark \
-        terraform \
-        terraform-lsp-bin \
-        tflint-bin \
-        tlp \
-        tlp-rdw \
-        tmate \
-        tmux \
-        topgrade \
-        tree \
-        typescript \
-        udisks2 \
-        unzip \
-        vifm \
-        waybar \
-        wf-recorder \
-        wget \
-        whois \
-        wl-clipboard \
-        wofi \
-        xdg-desktop-portal-wlr \
-        xorg-xwayland \
-        yamllint \
-        yq \
-        zathura \
-        zathura-pdf-poppler \
-        zsh
+    # Set colors for pacman
+    sudo sed -i 's/#Color/Color/' /etc/pacman.conf
+
+    # Install Pacmanfile if not installed
+    if [ ! -x "$(command -v pacmanfile)" ]; then
+        printf '\e[1mInstalling Pacmanfile\e[0m\n'
+        paru -Syu --noconfirm --needed pacmanfile
+    fi
+
+    # Install packages using Pacmanfile
+    printf '\e[1mInstalling desired packages using Pacmanfile\e[0m\n'
+    pacmanfile sync --noconfirm
 
     # Install oh-my-zsh
     if [ ! -d ~/.oh-my-zsh ]; then
@@ -295,9 +174,6 @@ case "${DISTRO:-OS}" in
     sudo systemctl enable docker.service
     getent group docker || groupadd docker
     sudo usermod -aG docker "${USER}"
-    
-    # Set colors for pacman
-    sudo sed -i 's/#Color/Color/' /etc/pacman.conf
 
     # Change npm folder
     if [ -x "$(command -v npm)" ]; then
@@ -496,7 +372,7 @@ if [ ! -x "$(command -v rustup)" ]; then
 fi
 
 # Use zsh
-if [ -x "$(command -v zsh)" ]; then
+if [ -x "$(command -v zsh)" ] && [ "$SHELL" != "$(command -v zsh)" ]; then
     printf '\e[1mChanging your shell to zsh\e[0m\n'
     grep -q -F "$(command -v zsh)" /etc/shells || sudo sh -c 'echo "$(command -v zsh)" >> /etc/shells'
     chsh -s "$(command -v zsh)"
