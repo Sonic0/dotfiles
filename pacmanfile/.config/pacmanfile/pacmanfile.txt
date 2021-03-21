@@ -97,7 +97,8 @@ python
 python-pip
 python-pynvim 
 python-virtualenvwrapper
-qemu 
+qemu
+reflector
 ripgrep
 sed 
 shellcheck 
