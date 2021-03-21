@@ -19,11 +19,11 @@
 [pull]
     ff = only
 [diff]
-    tool = vimdiff
+    tool = delta
 [difftool]
     prompt = false
 [merge]
-    tool = vimdiff
+    tool = delta
 [mergetool]
     prompt = false
 [url "ssh://git@github.com/"]
