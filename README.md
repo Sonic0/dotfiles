@@ -1,6 +1,6 @@
 # Dotfiles
 
-This repository is forked from [mastertinner/dotfiles](https://github.com/mastertinner/dotfiles) and customized with my own configurations.
+This repository is forked from [mastertinner/dotfiles](https://github.com/mastertinner/dotfiles), with [Apache2.0](https://github.com/mastertinner/dotfiles/blob/main/LICENSE) License, and customized with my own configurations.
 
 I mainly work with [Python](https://python.org), [shell scripts](https://en.wikipedia.org/wiki/Shell_script) so my setup is geared towards working with these technologies.
 Other languages  [Rust](https://www.rust-lang.org), [JavaScript](https://en.wikipedia.org/wiki/JavaScript), [TypeScript](https://www.typescriptlang.org).
