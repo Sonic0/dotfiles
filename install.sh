@@ -77,11 +77,6 @@ case "${DISTRO:-OS}" in
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     fi
 
-    # Install Nvm
-    if [ ! -d ~/.nvm ]; then
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
-    fi
-
     # Install the Python Neovim package
     pip install --upgrade --user pynvim
 
@@ -135,51 +130,6 @@ case "${DISTRO:-OS}" in
     # Install packages using Pacmanfile
     printf '\e[1mInstalling desired packages using Pacmanfile\e[0m\n'
     pacmanfile sync --noconfirm
-
-    # Install oh-my-zsh
-    if [ ! -d ~/.oh-my-zsh ]; then
-        printf '\e[1mInstalling oh-my-zsh\e[0m\n'
-        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    fi
-
-    # Cloning oh-my-zsh plugins and themes
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/themes/powerlevel10k ]; then
-        printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k"
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting ]; then
-        printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm ]; then
-        printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm"
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions ]; then
-        printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-completions ]; then
-        printf '\e[1mCloning zsh-completions plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions"
-    fi
-
-    # Cloning tmp tmux plugin manager
-    if [ ! -x "$(command -v tmux)" ]; then
-        printf '\e[1mCloning Tmux TMP plugin manager\e[0m\n'
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    fi
-
-    # Enable docker service and allow user to run it without sudo
-    sudo systemctl enable docker.service
-    getent group docker || groupadd docker
-    sudo usermod -aG docker "${USER}"
-
-    # Change npm folder
-    if [ -x "$(command -v npm)" ]; then
-        mkdir -p ~/.node_modules/lib
-        npm config set prefix '~/.node_modules'
-    fi
     ;;
 
 'Ubuntu')
@@ -261,40 +211,6 @@ case "${DISTRO:-OS}" in
         zathura-pdf-poppler \
         zsh
 
-    # Install oh-my-zsh
-    if [ ! -d ~/.oh-my-zsh ]; then
-        printf '\e[1mInstalling oh-my-zsh\e[0m\n'
-        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    fi
-
-    # Cloning oh-my-zsh plugins and themes
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/themes/powerlevel10k ]; then
-        printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting ]; then
-        printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm ]; then
-        printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions ]; then
-        printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-completions ]; then
-        printf '\e[1mCloning zsh-completions plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/zsh-completions
-    fi
-
-    # Cloning tmp tmux plugin manager
-    if [ ! -x "$(command -v tmux)" ]; then
-        printf '\e[1mCloning Tmux TMP plugin manager\e[0m\n'
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    fi
-
     # Install Docker
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo apt-key fingerprint 0EBFCD88
@@ -303,22 +219,6 @@ case "${DISTRO:-OS}" in
         $(lsb_release -cs) \
         stable"
     sudo apt update && sudo apt install --yes docker-ce docker-ce-cli containerd.io
-
-    # Enable docker service and allow user to run it without sudo
-    sudo systemctl enable docker.service
-    getent group docker || groupadd docker
-    sudo usermod -aG docker "${USER}"
-
-    # Install Nvm
-    if [ ! -d ~/.nvm ]; then
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
-    fi
-
-    # Change npm folder
-    if [ -x "$(command -v npm)" ]; then
-        mkdir -p ~/.node_modules/lib
-        npm config set prefix ~/.node_modules
-    fi
 
     # Install Python packages
     if [ -x "$(command -v python3)" ] && [ -x "$(command -v python3 -m pip)" ]; then
@@ -364,6 +264,58 @@ case "${DISTRO:-OS}" in
     ;;
 esac
 
+# Common post-actions for Linux distributions
+if [ "${OS}" = 'Linux' ]; then
+    # Install oh-my-zsh
+    if [ ! -d ~/.oh-my-zsh ]; then
+        printf '\e[1mInstalling oh-my-zsh\e[0m\n'
+        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
+
+    # Cloning oh-my-zsh plugins and themes
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/themes/powerlevel10k ]; then
+        printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k"
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting ]; then
+        printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm ]; then
+        printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm"
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions ]; then
+        printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-completions ]; then
+        printf '\e[1mCloning zsh-completions plugin for oh-my-zsh\e[0m\n'
+        git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions"
+    fi
+
+    # Cloning tmp tmux plugin manager
+    if [ ! -x "$(command -v tmux)" ]; then
+        printf '\e[1mCloning Tmux TMP plugin manager\e[0m\n'
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
+
+    # Install Nvm
+    if [ ! -d ~/.nvm ]; then
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+    fi
+
+    # Enable docker service and allow user to run it without sudo
+    sudo systemctl enable docker.service
+    getent group docker || groupadd docker
+    sudo usermod -aG docker "${USER}"
+
+    # Change npm folder
+    if [ -x "$(command -v npm)" ]; then
+        mkdir -p ~/.node_modules/lib
+        npm config set prefix "${HOME}/.node_modules"
+    fi
+fi
 # Install rustup
 if [ ! -x "$(command -v rustup)" ]; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
