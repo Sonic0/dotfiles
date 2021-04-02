@@ -161,55 +161,7 @@ case "${DISTRO:-OS}" in
 
     # Install tools
     printf '\e[1mInstalling desired tools and apps\e[0m\n'
-    sudo apt update && sudo apt install --quiet --yes \
-        apt-transport-https \
-        ca-certificates \
-        curl \
-        ethtool \
-        fd-find \
-        firefox \
-        fonts-noto-cjk \
-        fonts-noto-color-emoji \
-        fwupd \
-        fzf \
-        gimp \
-        git \
-        gnupg \
-        gnupg-agent \
-        htop \
-        jq \
-        libnotify-bin \
-        lnav \
-        man-db \
-        mtr-tiny \
-        ncdu \
-        neovim \
-        nftables \
-        openssh-client \
-        python3-pip \
-        pulsemixer \
-        rclone \
-        ripgrep \
-        sed \
-        shellcheck \
-        smartmontools \
-        software-properties-common \
-        termshark \
-        tlp \
-        tlp-rdw \
-        tmate \
-        tmux \
-        tree \
-        ttf-ancient-fonts \
-        unzip \
-        vim \
-        vifm \
-        vlc \
-        wget \
-        whois \
-        zathura \
-        zathura-pdf-poppler \
-        zsh
+    sudo apt update && xargs -a ubuntu_packages.txt sudo apt install --quiet --yes
 
     # Install Docker
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -267,31 +219,31 @@ esac
 # Common post-actions for Linux distributions
 if [ "${OS}" = 'Linux' ]; then
     # Install oh-my-zsh
-    if [ ! -d ~/.oh-my-zsh ]; then
+    if [ ! -d "${HOME}/.oh-my-zsh" ]; then
         printf '\e[1mInstalling oh-my-zsh\e[0m\n'
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     fi
 
     # Cloning oh-my-zsh plugins and themes
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/themes/powerlevel10k ]; then
+    if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"/themes/powerlevel10k ]; then
         printf '\e[1mCloning power10k theme for oh-my-zsh\e[0m\n'
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k"
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/themes/powerlevel10k"
     fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting ]; then
+    if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting ]; then
         printf '\e[1mCloning zsh-syntax-highlighting plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
     fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-nvm ]; then
+    if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"/plugins/zsh-nvm ]; then
         printf '\e[1mCloning zsh-nvm plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm"
+        git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-nvm"
     fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions ]; then
+    if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions ]; then
         printf '\e[1mCloning zsh-autosuggestions plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
     fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-completions ]; then
+    if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"/plugins/zsh-completions ]; then
         printf '\e[1mCloning zsh-completions plugin for oh-my-zsh\e[0m\n'
-        git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions"
+        git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=${HOME}/.oh-my-zsh/custom}/plugins/zsh-completions"
     fi
 
     # Cloning tmp tmux plugin manager

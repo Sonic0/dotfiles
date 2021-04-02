@@ -13,7 +13,7 @@
     syntax-theme = Dracula
 [delta "decorations"]
     commit-decoration-style = purple box ul
-    file-style = bold yellow ul
+    file-style = bold cyan ul
 [interactive]
     diffFilter = delta --color-only
 [pull]
