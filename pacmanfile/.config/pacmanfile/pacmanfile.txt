@@ -140,4 +140,5 @@ yamllint
 yq
 zathura
 zathura-pdf-poppler
+zip
 zsh
