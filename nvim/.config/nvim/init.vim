@@ -8,8 +8,7 @@ source ~/.config/nvim/plugins.vim
 
 " Set color scheme
 colorscheme iceberg
-"""" Color scheme from Tobi
-""""colorscheme quantum
+" colorscheme quantum " Color scheme from Lena
 set guifont=DroidSansMono\ Nerd\ Font\ 11
 set fillchars+=vert:\$
 set background=dark
