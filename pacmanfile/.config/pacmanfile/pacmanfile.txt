@@ -61,6 +61,7 @@ linux
 linux-firmware
 lnav
 lolcat
+lostfiles
 make
 mako
 man-db
