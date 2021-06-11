@@ -78,7 +78,7 @@ case "${DISTRO:-OS}" in
     fi
 
     # Install the Python Neovim package
-    pip install --upgrade --user pynvim
+    pip3 install --upgrade --user pynvim
 
     # Set dark mode
     sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
