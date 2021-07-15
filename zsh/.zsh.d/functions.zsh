@@ -13,16 +13,16 @@ fcd() {
 # Edit a directory or a file using fuzzy search
 fe() {
     local target fzf_cmd
-    fzf_cmd='fd --follow --hidden --no-ignore
-        --exclude .git
-        --exclude vendor
-        --exclude node_modules
-        --exclude .terraform
-        --exclude target
-        --exclude bin
-        --exclude build
-        --exclude dist
-        --exclude coverage
+    fzf_cmd='fd --follow --hidden --no-ignore \
+        --exclude .git \
+        --exclude vendor \
+        --exclude node_modules \
+        --exclude .terraform \
+        --exclude target \
+        --exclude bin \
+        --exclude build \
+        --exclude dist \
+        --exclude coverage \
         --exclude .DS_Store'
     target=$(eval $fzf_cmd | fzf +m) &&
     if [ -d "$target" ]; then
@@ -82,15 +82,13 @@ ide() {
     fi
 
     if [ -z "${TMUX}" ]; then
-        tmux new-session -d -s ide
-        tmux split-window -vb -p 90
-        tmux select-pane -t 0
-        tmux send-keys 'nvim +NERDTree' C-m
-    else
-        tmux split-window -vb -p 90
-        tmux select-pane -t 0
-        tmux send-keys 'nvim +NERDTree' C-m
+        tmux new-session -A -s ide
     fi
+
+    tmux split-window -vb -p 90
+    tmux select-pane -t 0
+
+    tmux send-keys 'nvim -c NvimTreeOpen' C-m
 }
 
 # Update project dependencies
@@ -213,13 +211,6 @@ pacu() {
         processes+=("$!")
     fi
 
-    # Rust
-    if [ -x "$(command -v rustup)" ]; then
-        printf '\e[1mUpdating rustup components\e[0m\n'
-        (rustup update) &
-        processes+=("$!")
-    fi
-
     # nvm
     if [ -x "$(command -v nvm)" ]; then
         printf '\e[1mUpdating nvm (Node Version Manager)\e[0m\n'
@@ -240,25 +231,10 @@ pacu() {
         processes+=("$!")
     fi
 
-    # Python pip
-    if [ -x "$(command -v pip)" ]; then
-        printf '\e[1mUpdating pip packages\e[0m\n'
-        (pip list --user --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install --user --upgrade) &
-        processes+=("$!")
-    fi
-
     # Neovim
     if [ -x "$(command -v nvim)" ]; then
         printf '\e[1mUpdating Vim plugins\e[0m\n'
-        nvim --headless -c 'PlugUpgrade | PlugClean! | PlugUpdate | qa'
-        nvim --headless -c 'UpdateRemotePlugins | qa'
-    fi
-
-    # oh-my-zsh
-    if [ -n "${ZSH}" ] && [ "${ZSH}" == "${HOME}/.oh-my-zsh" ]; then
-        printf '\e[1mUpdating oh-my-zsh framework\e[0m\n'
-        (omz update) &
-        processes+=("$!")
+        nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     fi
 
     # Wait for all processes to finish

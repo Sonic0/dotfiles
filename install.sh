@@ -184,7 +184,7 @@ case "${DISTRO:-OS}" in
 
     # Install Python packages
     if [ -x "$(command -v python3)" ] && [ -x "$(command -v python3 -m pip)" ]; then
-        python3 -m pip install --user -r python_requirements.txt
+        python3 -m pip install --user -r python/requirements.txt
     else
         printf '\e[91mPlease install or update your Python version\e[0m\n'
     fi
@@ -193,6 +193,13 @@ case "${DISTRO:-OS}" in
     if [ ! -x "$(command -v aws)" ]; then
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         (unzip awscliv2.zip && sudo ./aws/install && rm -rf aws awscliv2.zip)
+    fi
+
+    # Install rustup
+    if [ ! -x "$(command -v rustup)" ]; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+        . $HOME/.cargo/env
+        rustup component add rls rust-analysis rust-src rustfmt clippy
     fi
 
     printf "\e[1mIt wasn't worth installing Ubuntu... now you have to install those packages manually ¯\_(ツ)_/¯\e[0m\n
@@ -225,6 +232,10 @@ case "${DISTRO:-OS}" in
     exit 1
     ;;
 esac
+
+# Install vim-plug
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Common post-actions for Linux distributions
 if [ "${OS}" = 'Linux' ]; then
@@ -277,12 +288,6 @@ if [ "${OS}" = 'Linux' ]; then
         mkdir -p ~/.node_modules/lib
         npm config set prefix "${HOME}/.node_modules"
     fi
-fi
-# Install rustup
-if [ ! -x "$(command -v rustup)" ]; then
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    . $HOME/.cargo/env
-    rustup component add rls rust-analysis rust-src rustfmt clippy
 fi
 
 # Use zsh
