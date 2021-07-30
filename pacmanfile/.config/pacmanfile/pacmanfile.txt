@@ -8,6 +8,7 @@ awslogs
 bat
 base
 base-devel
+bash-language-server
 bind
 binutils
 bison
@@ -62,6 +63,7 @@ linux-firmware
 lnav
 lolcat
 lostfiles
+lua-format
 make
 mako
 man-db
@@ -100,6 +102,8 @@ python-virtualenvwrapper
 qemu
 reflector
 ripgrep
+rust
+rust-analyzer
 sed
 shellcheck
 signal-desktop
@@ -124,6 +128,7 @@ tmux
 topgrade
 tree
 typescript
+typescript-language-server-bin
 udisks2
 unzip
 vifm
