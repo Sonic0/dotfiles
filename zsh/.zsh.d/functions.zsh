@@ -233,7 +233,7 @@ pacu() {
 
     # Neovim
     if [ -x "$(command -v nvim)" ]; then
-        printf '\e[1mUpdating Vim plugins\e[0m\n'
+        printf '\e[1mUpdating Neovim plugins\e[0m\n'
         nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     fi
 
