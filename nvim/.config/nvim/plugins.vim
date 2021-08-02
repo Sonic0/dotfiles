@@ -82,7 +82,6 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 
-
 " Toggle Comments
 Plug 'tpope/vim-commentary'
 
@@ -167,6 +166,10 @@ let g:terraform_fmt_on_save = 1
 
 " TOML
 Plug 'cespare/vim-toml', { 'for': 'toml' }
+
+" Markdown
+Plug 'npxbr/glow.nvim', {'do': ':GlowInstall', 'branch': 'main'}
+nnoremap <leader>p :Glow<CR>
 
 " nginx
 Plug 'chr4/nginx.vim', { 'for': 'nginx' }
