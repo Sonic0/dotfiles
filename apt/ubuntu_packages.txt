@@ -19,7 +19,7 @@ lnav
 man-db
 mtr-tiny
 ncdu
-neovim
+#neovim
 nftables
 openssh-client
 python3-pip

@@ -164,9 +164,14 @@ case "${DISTRO:-OS}" in
     done
     sudo apt remove stow --yes
 
+    # Install neovim from unstable repo and set as major alternative
+    # Remove this step when neovim>=0.5 as default
+    sudo add-apt-repository ppa:neovim-ppa/unstable --yes && sudo apt-get update && sudo apt-get install neovim --yes
+    sudo update-alternatives --install "$(which vim)" vim "$(which nvim)" 10 && \
+      sudo update-alternatives --set vim "$(which nvim)"
     # Install tools
-    printf '\e[1mInstalling desired tools and apps\e[0m\n'
-    sudo apt update && xargs -a ubuntu_packages.txt sudo apt install --quiet --yes
+    printf '\e[1mInstalling desired apps and tools\e[0m\n'
+    sudo apt update && xargs -a apt/ubuntu_packages.txt sudo apt install --quiet --yes
 
     # Install Docker
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
