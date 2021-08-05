@@ -7,7 +7,6 @@ aws-cli
 awslogs
 bat
 base
-base-devel
 bash-language-server
 bind
 binutils
