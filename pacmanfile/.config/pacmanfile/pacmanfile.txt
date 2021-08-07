@@ -94,8 +94,6 @@ playerctl
 prettier
 pulsemixer
 pwgen
-python
-python-pip
 python-pynvim
 python-virtualenvwrapper
 qemu
@@ -111,11 +109,11 @@ smartmontools
 speedtest-cli
 spotifyd
 spotify-tui-bin
+sudo
 svgo
 sway
 swayidle
 swaylock
-sudo
 termshark
 terraform
 terraform-ls-bin
