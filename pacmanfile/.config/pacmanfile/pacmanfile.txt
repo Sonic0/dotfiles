@@ -39,6 +39,7 @@ golangci-lint-bin
 gopass
 gopass-jsonapi
 gopls
+go-tools
 grim
 gron-bin
 grub
