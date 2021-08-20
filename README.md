@@ -7,6 +7,8 @@ Other languages  [Rust](https://www.rust-lang.org), [JavaScript](https://en.wiki
 
 Supported operating systems are macOS, Arch Linux and Ubuntu (and their derivates).
 
+![Screenshot](https://i.ibb.co/p0m5YHR/screenshot-2021-08-20-09-13-58.png)
+
 ## Features and Usage
 
 ### Terminal
