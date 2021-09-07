@@ -163,7 +163,7 @@ case "${DISTRO:-OS}" in
     fi
     # Stow subdirectories of dotfiles
     for dir in ~/dotfiles/*/; do
-        stow --dir ~/dotfiles "$(basename "${dir}")"
+        stow --dir ~/dotfiles --target ~ "$(basename "${dir}")"
     done
     sudo apt remove stow --yes
 
