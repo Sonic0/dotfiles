@@ -3,7 +3,7 @@ ansible
 ansible-lint
 autoconf
 automake
-aws-cli
+aws-cli-v2-bin
 awslogs
 bat
 base
