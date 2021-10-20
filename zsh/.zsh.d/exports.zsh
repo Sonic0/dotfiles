@@ -12,19 +12,6 @@ export VISUAL="${EDITOR}"
 # Omit duplicates and commands that begin with a space from history
 export HISTCONTROL='ignoreboth';
 
-# Search only desired files with fzf
-export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --no-ignore \
-    --exclude .git \
-    --exclude vendor \
-    --exclude node_modules \
-    --exclude .terraform \
-    --exclude target \
-    --exclude bin \
-    --exclude build \
-    --exclude dist \
-    --exclude coverage \
-    --exclude .DS_Store'
-
 # Time format
 export HISTTIMEFORMAT="%d/%m/%y %T"
 
@@ -39,7 +26,7 @@ export NVM_DIR="${HOME}/.nvm"
 export WORKON_HOME="$HOME/.virtualenvs"
 export VIRTUALENVWRAPPER_PYTHON="$(command -v python3)"
 
-# Enable Wayland Firefox globally
+# Set environment variables for Firefox
 if [[ -n "${WAYLAND_DISPLAY}" ]]; then
     export MOZ_ENABLE_WAYLAND=1
     export XDG_CURRENT_DESKTOP=sway
