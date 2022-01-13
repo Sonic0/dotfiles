@@ -68,6 +68,8 @@ lnav
 lolcat
 lostfiles
 lua-format
+lua-language-server
+m4
 make
 mako
 man-db
@@ -109,12 +111,14 @@ rust
 rust-analyzer
 sed
 shellcheck
+shfmt
 signal-desktop
 slurp
 smartmontools
 speedtest-cli
 spotifyd
 spotify-tui-bin
+stylua-bin
 sudo
 svgo
 sway
