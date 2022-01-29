@@ -55,11 +55,11 @@ return require("packer").startup(function()
         end,
     })
 
-    use 'tmux-plugins/vim-tmux' -- tmux.conf highlight
-
-    -- Previewers
-
-    use {"npxbr/glow.nvim", run = "GlowInstall"} -- Markdown
+    -- Markdown previewer
+    use({
+        "npxbr/glow.nvim",
+        run = "GlowInstall"
+    })
 
     -- LSP
     use({
