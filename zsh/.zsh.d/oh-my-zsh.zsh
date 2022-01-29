@@ -14,7 +14,6 @@ COMPLETION_WAITING_DOTS=true
 HITS_STAMPS="dd-mm-yyyy"
 
 plugins=(
-  cargo
   colored-man-pages
   colorize
   compleat
@@ -34,4 +33,3 @@ plugins=(
 )
 
 source "${ZSH}/oh-my-zsh.sh"
-
