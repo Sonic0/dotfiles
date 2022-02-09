@@ -152,6 +152,6 @@ xorg-xwayland
 yamllint
 yq
 zathura
-zathura-pdf-poppler
+zathura-pdf-mupdf
 zip
 zsh
