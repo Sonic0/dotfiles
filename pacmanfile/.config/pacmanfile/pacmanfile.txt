@@ -21,6 +21,7 @@ docker-compose
 dropbox
 efibootmgr
 eslint
+eslint_d
 ethtool
 exa
 fakeroot
