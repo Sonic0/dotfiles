@@ -123,6 +123,7 @@ stylua-bin
 sudo
 svgo
 sway
+swayhide
 swayidle
 swaylock
 termshark
