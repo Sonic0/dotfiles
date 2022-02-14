@@ -1,10 +1,7 @@
 alacritty
-ansible
-ansible-lint
 autoconf
 automake
 aws-cli-v2-bin
-awslogs
 bat
 base
 bash-language-server
@@ -151,7 +148,6 @@ wl-clipboard
 wofi
 xdg-desktop-portal-wlr
 xorg-xwayland
-yamllint
 yq
 zathura
 zathura-pdf-mupdf
