@@ -51,6 +51,7 @@ informant
 inkscape
 intel-ucode
 iputils
+jless
 jpegoptim
 jq
 kanshi
