@@ -18,107 +18,31 @@ fi
 
 case "${DISTRO:-OS}" in
 
-# On Linux, use the respective package manager
-'Darwin')
-
-    # Install Xcode Command Line Tools if not installed
-    if ! xcode-select -p >/dev/null; then
-        printf 'Xcode Command Line Tools not installed. You will have to run the script again after successfully installing them. Install now? (Y/n)'
-        read -r
-        echo
-        if ! "$REPLY" | grep -Eq '^[Nn]'; then
-            xcode-select --install
-            echo 'Please run the script again after the installation has finished'
-        else
-            echo 'Please install the Xcode Command Line Tools and run then script again.'
-        fi
-        exit
-    fi
-
-    # Install Homebrew if not installed
-    if [ ! -x "$(command -v brew)" ]; then
-        printf '\e[1mInstalling Homebrew\e[0m\n'
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    fi
-
-    # Install git if not installed
-    if [ ! -x "$(command -v git)" ]; then
-        printf '\e[1mInstalling Git\e[0m\n'
-        brew install git
-    fi
-
-    # git clone these dotfiles if not done yet
-    if [ ! -d ~/dotfiles ]; then
-        printf '\e[1mCloning dotfiles repo\e[0m\n'
-        git clone git@github.com:mastertinner/dotfiles.git ~/dotfiles
-    fi
-
-    # Install Stow if not installed
-    if [ ! -x "$(command -v stow)" ]; then
-        printf '\e[1mLinking dotfiles to your home directory\e[0m\n'
-        brew install stow
-    fi
-    # Remove existing config files
-    if [ -f ~/.zshrc ]; then
-        rm ~/.zshrc
-    fi
-    # Stow subdirectories of dotfiles
-    for dir in ~/dotfiles/*/; do
-        stow --dir ~/dotfiles --target ~ "$(basename "${dir}")"
-    done
-
-    # Install pip if not installed
-    if [ ! -x "$(command -v pip)" ]; then
-        sudo easy_install pip
-    fi
-
-    # Install oh-my-zsh
-    if [ ! -d ~/.oh-my-zsh ]; then
-        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    fi
-
-    # Install the Python Neovim package
-    pip3 install --upgrade --user pynvim
-
-    # Install additional language servers currently not available via Homebrew
-    npm install --global \
-        bash-language-server \
-        typescript-language-server \
-        eslint_d
-
-    # Install additional Go tooling currently not available via Homebrew
-    go get golang.org/x/tools/cmd/goimports
-
-    # Set dark mode
-    sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
-    ;;
-
 'ArchLinux')
-
     # Install Git if not installed
     if [ ! -x "$(command -v git)" ]; then
         printf '\e[1mInstalling Git\e[0m\n'
-        sudo pacman -Syu git --noconfirm --needed
+        sudo pacman -Syu --noconfirm --needed git
     fi
 
     # git clone these dotfiles if not done yet
     if [ ! -d ~/dotfiles ]; then
         printf '\e[1mCloning dotfiles repo\e[0m\n'
-        git clone git@github.com:Sonic0/dotfiles.git ~/dotfiles
+        git clone https://github.com/Sonic0/dotfiles.git ~/dotfiles
     fi
 
     # Install Stow if not installed
-    printf '\e[1mLinking dotfiles to your home directory\e[0m\n'
-    sudo pacman -Syu stow --noconfirm --needed
+    sudo pacman -Syu --noconfirm --needed stow
     # Remove existing config files
     if [ -f ~/.zshrc ]; then
         rm ~/.zshrc
     fi
     # Stow subdirectories of dotfiles
+    printf '\e[1mLinking dotfiles to your home directory\e[0m\n'
     for dir in ~/dotfiles/*/; do
         stow --dir ~/dotfiles --target ~ "$(basename "${dir}")"
     done
-    sudo pacman -Rns stow --noconfirm
+    sudo pacman -Rns --noconfirm stow
 
     # Install Paru if not installed
     if [ ! -x "$(command -v paru)" ]; then
@@ -143,40 +67,39 @@ case "${DISTRO:-OS}" in
     # Change npm folder
     if [ -x "$(command -v npm)" ]; then
         mkdir -p ~/.node_modules/lib
-        npm config set prefix ~/.node_modules
+        npm config set prefix '~/.node_modules'
     fi
     ;;
 
 'Ubuntu')
-
     # Install Git if not installed
     if [ ! -x "$(command -v git)" ]; then
         printf '\e[1mInstalling Git\e[0m\n'
-        sudo apt install git --quiet --y
+        sudo apt install --quiet --yes git
     fi
 
     # git clone these dotfiles if not done yet
     if [ ! -d ~/dotfiles ]; then
         printf '\e[1mCloning dotfiles repo\e[0m\n'
-        git clone git@github.com:Sonic0/dotfiles.git ~/dotfiles
+        git clone https://github.com/Sonic0/dotfiles.git ~/dotfiles
     fi
 
     # Install Stow if not installed
-    printf '\e[1mLinking dotfiles to your home directory\e[0m\n'
-    sudo apt install stow --quiet --yes
+    sudo apt install --quiet --yes stow
     # Remove existing config files
     if [ -f ~/.zshrc ]; then
         rm ~/.zshrc
     fi
     # Stow subdirectories of dotfiles
+    printf '\e[1mLinking dotfiles to your home directory\e[0m\n'
     for dir in ~/dotfiles/*/; do
         stow --dir ~/dotfiles --target ~ "$(basename "${dir}")"
     done
-    sudo apt remove stow --yes
+    sudo apt remove --yes stow
 
     # Install neovim from unstable repo and set as major alternative
     # Remove this step when neovim>=0.5 as default
-    sudo add-apt-repository ppa:neovim-ppa/unstable --yes && sudo apt-get update && sudo apt-get install neovim --yes
+    sudo add-apt-repository ppa:neovim-ppa/unstable --yes && sudo apt-get update && sudo apt-get install --yes neovim
     sudo update-alternatives --install "$(which vim)" vim "$(which nvim)" 10 && \
       sudo update-alternatives --set vim "$(which nvim)"
     # Install tools
@@ -247,6 +170,83 @@ case "${DISTRO:-OS}" in
     | wf-recorder | https://github.com/ammen99/wf-recorder | Shell |\n"
     ;;
 
+'Darwin')
+
+    # Install Xcode Command Line Tools if not installed
+    if ! xcode-select -p >/dev/null; then
+        printf 'Xcode Command Line Tools not installed. You will have to run the script again after successfully installing them. Install now? (Y/n)'
+        read -r
+        echo
+        if ! "$REPLY" | grep -Eq '^[Nn]'; then
+            xcode-select --install
+            echo 'Please run the script again after the installation has finished'
+        else
+            echo 'Please install the Xcode Command Line Tools and run then script again.'
+        fi
+        exit
+    fi
+
+    # Install Homebrew if not installed
+    if [ ! -x "$(command -v brew)" ]; then
+        printf '\e[1mInstalling Homebrew\e[0m\n'
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+
+    # Install git if not installed
+    if [ ! -x "$(command -v git)" ]; then
+        printf '\e[1mInstalling Git\e[0m\n'
+        brew install git
+    fi
+
+    # git clone these dotfiles if not done yet
+    if [ ! -d ~/dotfiles ]; then
+        printf '\e[1mCloning dotfiles repo\e[0m\n'
+        git clone https://github.com/Sonic0/dotfiles.git ~/dotfiles
+    fi
+
+    # Install Stow if not installed
+    if [ ! -x "$(command -v stow)" ]; then
+        brew install stow
+    fi
+    # Remove existing config files
+    if [ -f ~/.zshrc ]; then
+        rm ~/.zshrc
+    fi
+    # Stow subdirectories of dotfiles
+    printf '\e[1mLinking dotfiles to your home directory\e[0m\n'
+    for dir in ~/dotfiles/*/; do
+        stow --dir ~/dotfiles --target ~ "$(basename "${dir}")"
+    done
+    # Remove Stow
+    brew uninstall stow
+
+    # Install pip if not installed
+    if [ ! -x "$(command -v pip)" ]; then
+        printf '\e[1mInstalling Python Pip\e[0m\n'
+        sudo easy_install pip
+    fi
+
+    # Install oh-my-zsh
+    if [ ! -d ~/.oh-my-zsh ]; then
+        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
+
+    # Install the Python Neovim package
+    pip3 install --upgrade --user pynvim
+
+    # Install additional language servers currently not available via Homebrew
+    npm install --global \
+        bash-language-server \
+        typescript-language-server \
+        eslint_d
+
+    # Install additional Go tooling currently not available via Homebrew
+    go get golang.org/x/tools/cmd/goimports
+
+    # Set dark mode
+    sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
+    ;;
+
 # Default
 *)
     printf '\e[1mOS not supported for automated setup. Please install manually.\e[0m\n'
@@ -254,9 +254,11 @@ case "${DISTRO:-OS}" in
     ;;
 esac
 
-# Install vim-plug
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# Install Neovim plugin manager
+if [ ! -d ~/.local/share/nvim/site/pack/packer ]; then
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+        ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+fi
 
 # Install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
