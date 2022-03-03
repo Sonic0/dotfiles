@@ -8,7 +8,7 @@ Cloudlena mainly works with [Go](https://golang.org), [Rust](https://www.rust-la
 
 Supported operating systems are macOS, Arch Linux (and their derivates) and Ubuntu.
 
-![Screenshot](https://i.ibb.co/p0m5YHR/screenshot-2021-08-20-09-13-58.png)
+![Screenshot](https://i.ibb.co/jL2sQ1H/dotfiles-screenshot.png)
 
 ## Features and Usage
 
