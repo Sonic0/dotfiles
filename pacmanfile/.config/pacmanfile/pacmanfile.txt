@@ -76,6 +76,7 @@ mtr
 mpv
 nancy-bin
 ncdu
+ncspot-bin
 neovim
 nerd-fonts-fira-code
 networkmanager
@@ -115,8 +116,6 @@ signal-desktop
 slurp
 smartmontools
 speedtest-cli
-spotifyd
-spotify-tui-bin
 stylua-bin
 sudo
 svgo
