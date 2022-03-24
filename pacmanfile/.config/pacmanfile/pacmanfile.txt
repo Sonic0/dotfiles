@@ -10,6 +10,7 @@ binutils
 bison
 bluez
 bluez-utils
+brightnessctl
 clipman
 curl
 driftctl-bin
@@ -60,7 +61,6 @@ kubectx
 libimobiledevice
 libnotify
 libtool
-light
 linux
 linux-firmware
 lnav
