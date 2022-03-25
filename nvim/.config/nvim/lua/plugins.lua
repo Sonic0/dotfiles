@@ -177,6 +177,9 @@ return require("packer").startup(function()
 
             cmp.setup({
                 sources = sources,
+                mapping = {
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                },
                 formatting = { format = require("lspkind").cmp_format() },
             })
         end,
