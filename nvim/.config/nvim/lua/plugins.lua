@@ -163,6 +163,7 @@ return require("packer").startup(function()
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-vsnip",
             "onsails/lspkind-nvim",
         },
         config = function()
@@ -173,13 +174,19 @@ return require("packer").startup(function()
                 { name = "nvim_lsp" },
                 { name = "path" },
                 { name = "buffer" },
+                { name = "vsnip" },
             }
 
             cmp.setup({
-                sources = sources,
+                snippet = {
+                    expand = function(args)
+                        vim.fn["vsnip#anonymous"](args.body)
+                    end,
+                },
                 mapping = {
                     ["<CR>"] = cmp.mapping.confirm({ select = true }),
                 },
+                sources = sources,
                 formatting = { format = require("lspkind").cmp_format() },
             })
         end,
@@ -264,6 +271,12 @@ return require("packer").startup(function()
             -- Toggle diagnostics
             vim.api.nvim_set_keymap("n", "<C-s>", "<Cmd>Telescope diagnostics<CR>", { noremap = true, silent = true })
         end,
+    })
+
+    -- Snippets
+    use({
+        "hrsh7th/vim-vsnip",
+        requires = "rafamadriz/friendly-snippets",
     })
 
     -- File tree
