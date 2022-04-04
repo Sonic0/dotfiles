@@ -124,7 +124,7 @@ signal-desktop
 slurp
 smartmontools
 speedtest-cli
-stylua-bin
+stylua
 sudo
 svgo
 sway
