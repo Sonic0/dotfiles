@@ -8,6 +8,7 @@ tap "homebrew/cask-fonts"
 tap "sonatype-nexus-community/homebrew-nancy-tap"
 
 brew "awscli"
+brew "bash-language-server"
 brew "driftctl"
 brew "eslint"
 brew "fd"
