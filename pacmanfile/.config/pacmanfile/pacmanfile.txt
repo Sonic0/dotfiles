@@ -48,7 +48,7 @@ go-tools
 grep
 grim
 groff
-gron-bin
+gron
 grub
 gzip
 hadolint-bin
@@ -73,7 +73,6 @@ linux-firmware
 lnav
 lolcat
 lostfiles
-lua-format
 lua-language-server
 m4
 make
