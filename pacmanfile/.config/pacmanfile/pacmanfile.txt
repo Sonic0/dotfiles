@@ -142,7 +142,7 @@ tmux
 topgrade
 tree
 typescript
-typescript-language-server-bin
+typescript-language-server
 udisks2
 unzip
 vifm
