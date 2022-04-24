@@ -30,6 +30,7 @@ findutils
 firefox
 flex
 fwupd
+fx
 fzf
 gammastep
 gawk
