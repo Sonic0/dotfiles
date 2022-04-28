@@ -2,6 +2,7 @@ vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 vim.opt.cmdheight = 2 -- Give more space for displaying messages
 vim.opt.ignorecase = true -- Ignore case
 vim.opt.inccommand = "split" -- Preview for find-replace command
+vim.opt.laststatus = 3 -- Global status line
 vim.opt.mouse = 'a' -- Enables the mouse in all modes. This means copying will require holding shift
 vim.opt.number = true -- Show line numbers
 vim.opt.relativenumber = true -- Relative line numbers

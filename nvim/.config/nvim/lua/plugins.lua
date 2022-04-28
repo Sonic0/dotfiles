@@ -360,7 +360,6 @@ return require("packer").startup(function()
                 },
                 extensions = { "nvim-tree" },
                 options = {
-                    globalstatus = true,
                     theme = "tokyonight",
                 },
             })
