@@ -61,7 +61,6 @@ informant
 inkscape
 intel-ucode
 iputils
-jless
 jpegoptim
 jq
 kanshi
@@ -113,7 +112,7 @@ pulsemixer
 pwgen
 python-pynvim
 python-virtualenvwrapper
-qemu
+qemu-desktop
 reflector
 ripgrep
 rust
