@@ -2,7 +2,11 @@
 
 :unicorn: My personal dotfiles
 
-This repository is forked from [mastertinner/dotfiles](https://github.com/mastertinner/dotfiles), with [Apache2.0](https://github.com/mastertinner/dotfiles/blob/main/LICENSE) License, and customized with a few personal configurations.
+---
+
+Repository forked from [cloudlena/dotfiles](https://github.com/cloudlena/dotfiles), with [Apache2.0](https://github.com/mastertinner/dotfiles/blob/main/LICENSE) License, and customized with a few personal configurations.
+
+---
 
 Cloudlena mainly works with [Go](https://golang.org), [Rust](https://www.rust-lang.org), [JavaScript](https://en.wikipedia.org/wiki/JavaScript), [TypeScript](https://www.typescriptlang.org), [Markdown](https://en.wikipedia.org/wiki/Markdown) and [shell scripts](https://en.wikipedia.org/wiki/Shell_script) so my setup is geared towards working with these technologies.
 
