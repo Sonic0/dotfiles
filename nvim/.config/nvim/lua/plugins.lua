@@ -130,6 +130,10 @@ return require("packer").startup(function()
                     },
                 },
             })
+            nvim_lsp.svelte.setup({
+                on_attach = on_attach,
+                capabilities = capabilities,
+            })
 
             -- Set correct icons in sign column
             local signs = {
@@ -268,6 +272,7 @@ return require("packer").startup(function()
                         "--exclude=.git",
                         "--exclude=.terraform",
                         "--exclude=.gradle",
+                        "--exclude=.svelte-kit",
                         "--exclude=bin",
                         "--exclude=build",
                         "--exclude=coverage",
