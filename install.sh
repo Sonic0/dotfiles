@@ -285,6 +285,7 @@ done
 
 # Cloning tmp tmux plugin manager
 if [ -x "$(command -v tmux)" ] && [ ! -d ~/.config/tmux/plugins/tpm ]; then
+    setenv -g TMUX_PLUGIN_MANAGER_PATH "${HOME}/.config/tmux/plugins/"
     printf '\e[1mCloning Tmux TMP plugin manager\e[0m\n'
     git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
     ~/.config/tmux/plugins/tpm/bin/install_plugins

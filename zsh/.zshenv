@@ -17,7 +17,7 @@ export EDITOR='nvim'
 export VISUAL="${EDITOR}"
 
 # Omit duplicates and commands that begin with a space from history
-export HISTCONTROL='ignoreboth';
+export HISTCONTROL='ignoreboth'
 
 # Time format
 export HISTTIMEFORMAT="%d/%m/%y %T"
