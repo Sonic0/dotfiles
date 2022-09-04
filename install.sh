@@ -128,9 +128,7 @@ case "${DISTRO:-OS}" in
 
     # Install Python packages
     if [ -x "$(command -v python3)" ] && [ -x "$(command -v python3 -m pip)" ]; then
-        python3 -m pip install --user -r python/requirements.txt --no-warn-script-location
-    else
-        printf '\e[91mPlease install or update your Python version\e[0m\n'
+        python3 -m pip install --user virtualenvwrapper --no-warn-script-location
     fi
 
     # Install aws-cli v2
