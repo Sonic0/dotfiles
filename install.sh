@@ -110,7 +110,7 @@ case "${DISTRO:-OS}" in
       sudo update-alternatives --set vim "$(which nvim)"
     # Install tools
     printf '\e[1mInstalling desired apps and tools\e[0m\n'
-    sudo apt update && xargs -a ~/dotfiles/apt/ubuntu_packages.txt sudo apt install --quiet --yes
+    sudo apt update && xargs -a ~/.config/apt_packages/ubuntu_packages.txt sudo apt install --quiet --yes
 
     # Install Docker
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
