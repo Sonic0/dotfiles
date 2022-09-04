@@ -23,6 +23,7 @@ plugins=(
   git
   lol
   npm
+  nvm
   pip
   sudo
   systemd

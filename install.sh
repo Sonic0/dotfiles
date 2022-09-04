@@ -110,7 +110,7 @@ case "${DISTRO:-OS}" in
       sudo update-alternatives --set vim "$(which nvim)"
     # Install tools
     printf '\e[1mInstalling desired apps and tools\e[0m\n'
-    sudo apt update && xargs -a apt/ubuntu_packages.txt sudo apt install --quiet --yes
+    sudo apt update && xargs -a ~/dotfiles/apt/ubuntu_packages.txt sudo apt install --quiet --yes
 
     # Install Docker
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -119,7 +119,7 @@ case "${DISTRO:-OS}" in
         "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) \
         stable"
-    sudo apt update && sudo apt install --yes docker-ce docker-ce-cli containerd.io
+    sudo apt update && sudo apt install --yes docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
     # Enable docker service and allow user to run it without sudo
     sudo systemctl enable docker.service
@@ -128,7 +128,7 @@ case "${DISTRO:-OS}" in
 
     # Install Python packages
     if [ -x "$(command -v python3)" ] && [ -x "$(command -v python3 -m pip)" ]; then
-        python3 -m pip install --user -r python/requirements.txt
+        python3 -m pip install --user -r python/requirements.txt --no-warn-script-location
     else
         printf '\e[91mPlease install or update your Python version\e[0m\n'
     fi
@@ -286,9 +286,10 @@ for plugin in "${oh_my_zsh_plugins[@]}"; do
 done
 
 # Cloning tmp tmux plugin manager
-if [ ! -x "$(command -v tmux)" ]; then
+if [ -x "$(command -v tmux)" ] && [ ! -d ~/.config/tmux/plugins/tpm ]; then
     printf '\e[1mCloning Tmux TMP plugin manager\e[0m\n'
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+    ~/.config/tmux/plugins/tpm/bin/install_plugins
 fi
 
 # Install Nvm
