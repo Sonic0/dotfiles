@@ -295,6 +295,7 @@ fi
 # Install Nvm
 if [ ! -d ~/.nvm ]; then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+    nvm install --lts && nvm install-latest-npm && nvm alias default node
 fi
 
 # Use zsh
