@@ -16,6 +16,7 @@ bluez-utils
 brightnessctl
 clipman
 curl
+delve
 driftctl-bin
 docker
 docker-compose
