@@ -2,6 +2,7 @@ aardvark-dns
 alacritty
 archlinux-keyring
 autoconf
+auto-cpufreq
 automake
 autotiling-rs
 aws-cli-v2-bin
@@ -25,7 +26,6 @@ dropbox
 efibootmgr
 eslint
 eslint_d
-ethtool
 exa
 fakeroot
 fd
@@ -125,7 +125,6 @@ shellcheck
 shfmt
 signal-desktop
 slurp
-smartmontools
 speedtest-cli
 stylua
 sudo
@@ -142,8 +141,6 @@ terraform-ls-bin
 texinfo
 tflint-bin
 timew
-tlp
-tlp-rdw
 tmate
 tmux
 topgrade
