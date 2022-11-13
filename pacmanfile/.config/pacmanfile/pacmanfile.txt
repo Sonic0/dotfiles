@@ -68,7 +68,6 @@ jq
 kanshi
 kubectl
 kubectx
-libimobiledevice
 libnotify
 libtool
 linux
