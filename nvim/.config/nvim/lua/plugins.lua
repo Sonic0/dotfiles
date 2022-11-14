@@ -324,8 +324,8 @@ return require("packer").startup(function()
 
     -- File tree
     use({
-        "kyazdani42/nvim-tree.lua",
-        requires = { "kyazdani42/nvim-web-devicons" },
+        "nvim-tree/nvim-tree.lua",
+        requires = { "nvim-tree/nvim-web-devicons" },
         config = function()
             local nvim_tree = require("nvim-tree")
 
@@ -371,7 +371,7 @@ return require("packer").startup(function()
     -- Status line
     use({
         "nvim-lualine/lualine.nvim",
-        requires = { "kyazdani42/nvim-web-devicons" },
+        requires = { "nvim-tree/nvim-web-devicons", opt = true },
         config = function()
             require("lualine").setup({
                 sections = {
