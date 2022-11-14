@@ -33,6 +33,7 @@ file
 findutils
 firefox
 flex
+fuse-overlayfs
 fwupd
 fx
 fzf
@@ -86,7 +87,6 @@ nancy-bin
 ncdu
 ncspot-bin
 neovim
-ttf-firacode-nerd
 networkmanager
 nftables
 nmap
@@ -144,6 +144,7 @@ tmate
 tmux
 topgrade
 tree
+ttf-firacode-nerd
 typescript
 typescript-language-server
 udisks2
