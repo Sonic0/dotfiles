@@ -27,7 +27,7 @@ export HISTTIMEFORMAT="%d/%m/%y %T"
 export GPG_TTY="$(tty)"
 
 # Nvm
-export NVM_AUTOLOAD=1
+export NVM_LAZY_LOAD=true
 
 # Python virtualenvwrapper
 export WORKON_HOME="$HOME/.virtualenvs"
