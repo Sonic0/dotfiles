@@ -224,11 +224,11 @@ case "${DISTRO:-OS}" in
     # Remove Stow
     brew uninstall stow
 
-    # Install pip if not installed
-    if [ ! -x "$(command -v pip)" ]; then
-        printf '\e[1mInstalling Python Pip\e[0m\n'
-        sudo easy_install pip
-    fi
+    # Install packages using Brewfile
+    printf '\e[1mInstalling desired packages using Pacmanfile\e[0m\n'
+    brew update
+    brew upgrade
+    cat ~/.config/homebrew/*Brewfile | brew bundle --file=-
 
     # Install oh-my-zsh
     if [ ! -d ~/.oh-my-zsh ]; then
