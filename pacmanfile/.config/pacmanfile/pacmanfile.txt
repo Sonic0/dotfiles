@@ -9,7 +9,6 @@ aws-cli-v2
 bat
 base
 bash-language-server
-bc
 bind
 binutils
 bison
