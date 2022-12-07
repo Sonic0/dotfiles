@@ -350,7 +350,9 @@ return require("packer").startup(function()
                 },
             })
 
-            vim.keymap.set("n", "<C-n>", nvim_tree.toggle)
+            vim.keymap.set("n", "<C-n>", function()
+                nvim_tree.toggle(true)
+            end)
         end,
     })
 
