@@ -1,4 +1,5 @@
 vim.g.mapleader = " " -- Set leader key
+vim.opt.breakindent = true -- Keep indentation for line breaks
 vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 vim.opt.cmdheight = 2 -- Give more space for displaying messages
 vim.opt.ignorecase = true -- Ignore case
