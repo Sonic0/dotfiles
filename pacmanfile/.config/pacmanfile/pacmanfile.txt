@@ -14,6 +14,7 @@ bison
 bluez
 bluez-utils
 brightnessctl
+chafa
 clipman
 curl
 git-delta

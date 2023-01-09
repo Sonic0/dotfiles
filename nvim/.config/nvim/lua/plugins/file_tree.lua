@@ -11,7 +11,7 @@ return {
                 "Toggle file tree",
             },
         },
-        config = {
+        opts = {
             filters = {
                 custom = { "^.DS_Store$", "^.git$" },
             },
