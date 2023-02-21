@@ -22,6 +22,7 @@ efibootmgr
 exa
 fd
 firefox
+firejail
 fuse-overlayfs
 fwupd
 fx
