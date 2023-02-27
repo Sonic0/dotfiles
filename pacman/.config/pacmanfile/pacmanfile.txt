@@ -133,4 +133,5 @@ yq
 zathura
 zathura-pdf-mupdf
 zip
+zoxide
 zsh
