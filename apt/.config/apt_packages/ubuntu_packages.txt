@@ -45,4 +45,5 @@ wget
 whois
 zathura
 zathura-pdf-poppler
+zoxide
 zsh
