@@ -56,7 +56,6 @@ linux-firmware
 lnav
 lolcat
 lostfiles
-maestral
 mako
 man-db
 mtr
