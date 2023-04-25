@@ -230,11 +230,6 @@ case "${DISTRO:-OS}" in
 	brew upgrade
 	cat ~/.config/homebrew/*Brewfile | brew bundle --file=-
 
-    # Install oh-my-zsh
-    if [ ! -d ~/.oh-my-zsh ]; then
-        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    fi
-
     # Install the Python Neovim package
     pip3 install --upgrade --user pynvim
 
@@ -253,36 +248,36 @@ case "${DISTRO:-OS}" in
 esac
 
 # Install oh-my-zsh
-if [ ! -d ~/.oh-my-zsh ]; then
+if [ -x "$(command -v omz)" ]; then
     printf '\e[1mInstalling oh-my-zsh\e[0m\n'
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 # Clone oh-my-zsh theme
-if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/themes/powerlevel10k ]; then
+if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"/themes/powerlevel10k ]; then
      printf '\e[1mCloning powerlevel10k theme for oh-my-zsh\e[0m\n'
-     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k"
+     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/themes/powerlevel10k"
 fi
 # Clone oh-my-zsh plugins
 oh_my_zsh_plugins=("lukechilds/zsh-nvm" "zsh-users/zsh-syntax-highlighting" "zsh-users/zsh-autosuggestions" "zsh-users/zsh-completions")
 for plugin in "${oh_my_zsh_plugins[@]}"; do
     zsh_plugin_dir_path="plugins/$(cut -d'/' -f3 <<< "${plugin}")"
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/${zsh_plugin_dir_path}" ]; then
+    if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/${zsh_plugin_dir_path}" ]; then
         printf '\e[1mCloning %s plugin for oh-my-zsh\e[0m\n' "${plugin}"
-        git clone "https://github.com/${plugin}" "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/${zsh_plugin_dir_path}"
+        git clone "https://github.com/${plugin}" "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/${zsh_plugin_dir_path}"
     fi
 done
 
-# Cloning tmp tmux plugin manager
-if [ -x "$(command -v tmux)" ] && [ ! -d ~/.config/tmux/plugins/tpm ]; then
-    setenv -g TMUX_PLUGIN_MANAGER_PATH "${HOME}/.config/tmux/plugins/"
-    printf '\e[1mCloning Tmux TMP plugin manager\e[0m\n'
-    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-    ~/.config/tmux/plugins/tpm/bin/install_plugins
+# Cloning tpm tmux plugin manager
+if [ -x "$(command -v tmux)" ] && [ ! -d "${HOME}/.config/tmux/plugins/tpm" ]; then
+    tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "${HOME}/.config/tmux/plugins"
+    printf '\e[1mCloning Tmux TPM plugin manager\e[0m\n'
+    git clone https://github.com/tmux-plugins/tpm "${HOME}/.config/tmux/plugins/tpm"
+    "${HOME}/.config/tmux/plugins/tpm/bin/install_plugins"
 fi
 
 # Install Nvm
-if [ ! -d ~/.nvm ]; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+if [ -x "$(command -v nvm)" ]; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
     nvm install --lts && nvm install-latest-npm && nvm alias default node
 fi
 
