@@ -27,11 +27,31 @@ export HISTTIMEFORMAT="%d/%m/%y %T"
 export GPG_TTY="$(tty)"
 
 # Nvm
-export NVM_LAZY_LOAD=true
+if [[ -d "${HOME}/.nvm" ]]; then
+    export NVM_DIR="${HOME}/.nvm"
+    [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"  # This loads nvm
+    [ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
+    export NVM_LAZY_LOAD=true
+fi
 
 # Python virtualenvwrapper
-export WORKON_HOME="$HOME/.virtualenvs"
-export VIRTUALENVWRAPPER_PYTHON="$(command -v python3)"
+if [[ -d "${HOME}/.virtualenvs" ]]; then
+    export WORKON_HOME="$HOME/.virtualenvs"
+    export VIRTUALENVWRAPPER_PYTHON="$(command -v python3)"
+fi
+
+# pnpm
+if [[ -d "${HOME}/.local/share/pnpm" ]]; then
+    export PNPM_HOME="${HOME}/.local/share/pnpm"
+    export PATH="${PNPM_HOME}:${PATH}"
+fi
+
+
+if [[ -d "${HOME}/.pyenv" ]]; then
+    export PYENV_ROOT="${HOME}/.pyenv"
+    command -v pyenv >/dev/null || export PATH="${PYENV_ROOT}/bin:${PATH}"
+    eval "$(pyenv init -)"
+fi
 
 # Set environment variables for Firefox on Wayland
 if [[ -n "${WAYLAND_DISPLAY}" ]]; then
