@@ -260,7 +260,7 @@ fi
 # Clone oh-my-zsh plugins
 oh_my_zsh_plugins=("lukechilds/zsh-nvm" "zsh-users/zsh-syntax-highlighting" "zsh-users/zsh-autosuggestions" "zsh-users/zsh-completions")
 for plugin in "${oh_my_zsh_plugins[@]}"; do
-    zsh_plugin_dir_path="plugins/$(cut -d'/' -f3 <<< "${plugin}")"
+    zsh_plugin_dir_path="plugins/$(cut -d'/' -f2 <<< "${plugin}")"
     if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/${zsh_plugin_dir_path}" ]; then
         printf '\e[1mCloning %s plugin for oh-my-zsh\e[0m\n' "${plugin}"
         git clone "https://github.com/${plugin}" "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/${zsh_plugin_dir_path}"
