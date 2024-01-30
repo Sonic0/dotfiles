@@ -40,17 +40,16 @@ if [[ -d "${HOME}/.virtualenvs" ]]; then
     export VIRTUALENVWRAPPER_PYTHON="$(command -v python3)"
 fi
 
+if [[ -d "${HOME}/.pyenv" ]]; then
+    export PYENV_ROOT="${HOME}/.pyenv"
+    [[ -d ${PYENV_ROOT}/bin ]] && export PATH="${PYENV_ROOT}/bin:${PATH}"
+    eval "$(pyenv init -)"
+fi
+
 # pnpm
 if [[ -d "${HOME}/.local/share/pnpm" ]]; then
     export PNPM_HOME="${HOME}/.local/share/pnpm"
     export PATH="${PNPM_HOME}:${PATH}"
-fi
-
-
-if [[ -d "${HOME}/.pyenv" ]]; then
-    export PYENV_ROOT="${HOME}/.pyenv"
-    command -v pyenv >/dev/null || export PATH="${PYENV_ROOT}/bin:${PATH}"
-    eval "$(pyenv init -)"
 fi
 
 # Set environment variables for Firefox on Wayland
