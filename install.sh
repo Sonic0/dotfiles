@@ -113,23 +113,21 @@ case "${DISTRO:-OS}" in
     sudo apt update && xargs -a ~/.config/apt_packages/ubuntu_packages.txt sudo apt install --quiet --yes
 
     # Install Docker
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo apt-key fingerprint 0EBFCD88
-    sudo add-apt-repository \
-        "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-        $(lsb_release -cs) \
-        stable"
-    sudo apt update && sudo apt install --yes docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install --yes docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     # Enable docker service and allow user to run it without sudo
-    sudo systemctl enable docker.service
-    getent group docker || groupadd docker
+    sudo groupadd docker
     sudo usermod -aG docker "${USER}"
-
-    # Install Python packages
-    if [ -x "$(command -v python3)" ] && [ -x "$(command -v python3 -m pip)" ]; then
-        python3 -m pip install --user virtualenvwrapper --no-warn-script-location
-    fi
+    newgrp docker
+    sudo systemctl enable docker.service
+    sudo systemctl enable containerd.service
 
     # Install aws-cli v2
     if [ ! -x "$(command -v aws)" ]; then
@@ -248,7 +246,7 @@ case "${DISTRO:-OS}" in
 esac
 
 # Install oh-my-zsh
-if [ -x "$(command -v omz)" ]; then
+if [ ! -x "$(command -v omz)" ]; then
     printf '\e[1mInstalling oh-my-zsh\e[0m\n'
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
@@ -258,9 +256,9 @@ if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"/themes/powerlevel10k ]; the
      git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/themes/powerlevel10k"
 fi
 # Clone oh-my-zsh plugins
-oh_my_zsh_plugins=("lukechilds/zsh-nvm" "zsh-users/zsh-syntax-highlighting" "zsh-users/zsh-autosuggestions" "zsh-users/zsh-completions")
-for plugin in "${oh_my_zsh_plugins[@]}"; do
-    zsh_plugin_dir_path="plugins/$(cut -d'/' -f2 <<< "${plugin}")"
+oh_my_zsh_plugins="lukechilds/zsh-nvm zsh-users/zsh-syntax-highlighting zsh-users/zsh-autosuggestions zsh-users/zsh-completions"
+for plugin in "${oh_my_zsh_plugins}"; do
+    zsh_plugin_dir_path="plugins/$(echo "${plugin}" | cut -d'/' -f2)"
     if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/${zsh_plugin_dir_path}" ]; then
         printf '\e[1mCloning %s plugin for oh-my-zsh\e[0m\n' "${plugin}"
         git clone "https://github.com/${plugin}" "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/${zsh_plugin_dir_path}"
@@ -276,13 +274,21 @@ if [ -x "$(command -v tmux)" ] && [ ! -d "${HOME}/.config/tmux/plugins/tpm" ]; t
 fi
 
 # Install Nvm
-if [ -x "$(command -v nvm)" ]; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-    nvm install --lts && nvm install-latest-npm && nvm alias default node
+if [ ! -x "$(command -v nvm)" ]; then
+    latest_nvm_tag=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep 'tag_name' | cut -d '"' -f 4)
+    # Check if the latest_tag variable is not empty
+    if [ -n "${latest_nvm_tag}" ]; then
+        printf "\e[1mInstalling nvm using installation script version ${latest_nvm_tag}\e[0m\n"
+        # Install nvm using the latest tag
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${latest_nvm_tag}/install.sh | bash
+        nvm install --lts && nvm install-latest-npm && nvm alias default node
+    else
+        printf "\e[1mFailed to fetch the latest nvm tag. Skip installation\e[0m\n"
+    fi
 fi
 
 # Use zsh
-if [ -x "$(command -v zsh)" ] && [ "$SHELL" != "$(command -v zsh)" ]; then
+if [ ! -x "$(command -v zsh)" ] && [ "${SHELL}" != "$(command -v zsh)" ]; then
 	printf '\e[1mChanging your shell to zsh\e[0m\n'
 	grep -q -F "$(command -v zsh)" /etc/shells || sudo sh -c 'echo "$(command -v zsh)" >> /etc/shells'
 	chsh -s "$(command -v zsh)"

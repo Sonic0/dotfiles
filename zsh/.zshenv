@@ -2,6 +2,7 @@
 path+=("${HOME}/.local/bin")
 path+=("${HOME}/.node_modules/bin")
 path+=("${HOME}/.cargo/bin")
+path+=("${HOME}/.cargo/env")
 path+=("${HOME}/go/bin")
 export PATH
 
@@ -28,8 +29,8 @@ export GPG_TTY="$(tty)"
 
 # Nvm
 if [[ -d "${HOME}/.nvm" ]]; then
-    export NVM_DIR="${HOME}/.nvm"
-    [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"  # This loads nvm
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
     [ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
     export NVM_LAZY_LOAD=true
 fi
@@ -55,5 +56,4 @@ fi
 # Set environment variables for Firefox on Wayland
 if [[ -n "${WAYLAND_DISPLAY}" ]]; then
     export MOZ_ENABLE_WAYLAND=1
-    export XDG_CURRENT_DESKTOP=sway
 fi
