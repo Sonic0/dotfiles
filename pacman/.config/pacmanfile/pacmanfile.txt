@@ -19,7 +19,7 @@ docker
 docker-compose
 dropbox
 efibootmgr
-exa
+eza
 fd
 firefox
 fuse-overlayfs

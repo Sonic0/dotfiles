@@ -1,7 +1,10 @@
+alacritty
 apt-transport-https
+bat
 ca-certificates
 curl
 ethtool
+eza
 fd-find
 firefox
 fonts-noto-cjk

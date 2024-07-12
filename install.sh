@@ -140,10 +140,7 @@ case "${DISTRO:-OS}" in
     fi
 
     printf "\e[1mIt wasn't worth installing Ubuntu... now you have to install those packages manually ¯\_(ツ)_/¯\e[0m\n
-    | alacritty | https://github.com/alacritty/alacritty  | Cargo |
-    | bat | https://github.com/sharkdp/bat | Cargo |
     | delta | https://github.com/dandavison/delta | Cargo |
-    | exa | https://github.com/ogham/exa#installation | Cargo |
     | topgrade | https://github.com/r-darwish/topgrade | Cargo |
     | github-cli | https://github.com/cli/cli/blob/trunk/docs/install_linux.md | Shell |
     | go | https://golang.org/dl/ | Shell |
