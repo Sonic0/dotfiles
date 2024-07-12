@@ -259,7 +259,7 @@ if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"/themes/powerlevel10k ]; the
 fi
 # Clone oh-my-zsh plugins
 oh_my_zsh_plugins="lukechilds/zsh-nvm zsh-users/zsh-syntax-highlighting zsh-users/zsh-autosuggestions zsh-users/zsh-completions"
-for plugin in "${oh_my_zsh_plugins}"; do
+for plugin in ${oh_my_zsh_plugins}; do
     zsh_plugin_dir_path="plugins/$(echo "${plugin}" | cut -d'/' -f2)"
     if [ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/${zsh_plugin_dir_path}" ]; then
         printf '\e[1mCloning %s plugin for oh-my-zsh\e[0m\n' "${plugin}"
@@ -282,7 +282,10 @@ if [ ! -x "$(command -v nvm)" ]; then
     if [ -n "${latest_nvm_tag}" ]; then
         printf "\e[1mInstalling nvm using installation script version ${latest_nvm_tag}\e[0m\n"
         # Install nvm using the latest tag
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${latest_nvm_tag}/install.sh | bash
+        PROFILE=/dev/null curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${latest_nvm_tag}/install.sh | bash
+        if [ ! -x "$(command -v nvm)" ]; then
+            source "${HOME}/.zshrc"
+        fi
         nvm install --lts && nvm install-latest-npm && nvm alias default node
     else
         printf "\e[1mFailed to fetch the latest nvm tag. Skip installation\e[0m\n"
