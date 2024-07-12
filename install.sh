@@ -248,7 +248,7 @@ case "${DISTRO:-OS}" in
 esac
 
 # Install oh-my-zsh
-if [ ! -x "$(command -v omz)" ]; then
+if [ ! -d "${HOME}/.oh-my-zsh" ]; then
     printf '\e[1mInstalling oh-my-zsh\e[0m\n'
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
