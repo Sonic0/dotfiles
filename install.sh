@@ -103,11 +103,6 @@ case "${DISTRO:-OS}" in
     done
     sudo apt remove --yes stow
 
-    # Install neovim from unstable repo and set as major alternative
-    # Remove this step when neovim>=0.5 as default
-    sudo add-apt-repository ppa:neovim-ppa/unstable --yes && sudo apt-get update && sudo apt-get install --yes neovim
-    sudo update-alternatives --install "$(which vim)" vim "$(which nvim)" 10 && \
-      sudo update-alternatives --set vim "$(which nvim)"
     # Install tools
     printf '\e[1mInstalling desired apps and tools\e[0m\n'
     sudo apt update && xargs -a ~/.config/apt_packages/ubuntu_packages.txt sudo apt install --quiet --yes
