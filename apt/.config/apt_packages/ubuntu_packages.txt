@@ -20,6 +20,7 @@ lua5.3
 man-db
 mtr-tiny
 ncdu
+neovim
 nftables
 openssh-client
 podman
