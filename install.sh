@@ -113,21 +113,23 @@ case "${DISTRO:-OS}" in
     sudo apt update && xargs -a ~/.config/apt_packages/ubuntu_packages.txt sudo apt install --quiet --yes
 
     # Install Docker
-    sudo install -m 0755 -d /etc/apt/keyrings
-    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-    sudo chmod a+r /etc/apt/keyrings/docker.asc
-    echo \
-      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt-get update
-    sudo apt-get install --yes docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-    # Enable docker service and allow user to run it without sudo
-    sudo groupadd docker
-    sudo usermod -aG docker "${USER}"
-    newgrp docker
-    sudo systemctl enable docker.service
-    sudo systemctl enable containerd.service
+    if [ ! -x "$(command -v docker)" ]; then
+        sudo install -m 0755 -d /etc/apt/keyrings
+        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+        sudo chmod a+r /etc/apt/keyrings/docker.asc
+        echo \
+          "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+          $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+          sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        sudo apt-get update
+        sudo apt-get install --yes docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        # Enable docker service and allow user to run it without sudo
+        getent group docker || groupadd docker
+        sudo usermod -aG docker "${USER}"
+        newgrp docker
+        sudo systemctl enable docker.service
+        sudo systemctl enable containerd.service
+    fi
 
     # Install aws-cli v2
     if [ ! -x "$(command -v aws)" ]; then
