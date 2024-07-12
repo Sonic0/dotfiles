@@ -271,14 +271,14 @@ if [ -x "$(command -v tmux)" ] && [ ! -d "${HOME}/.config/tmux/plugins/tpm" ]; t
 fi
 
 # Install Nvm
-if [ ! -x "$(command -v nvm)" ]; then
+if ! command -v nvm; then
     latest_nvm_tag=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep 'tag_name' | cut -d '"' -f 4)
     # Check if the latest_tag variable is not empty
     if [ -n "${latest_nvm_tag}" ]; then
         printf "\e[1mInstalling nvm using installation script version ${latest_nvm_tag}\e[0m\n"
         # Install nvm using the latest tag
         PROFILE=/dev/null curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${latest_nvm_tag}/install.sh | bash
-        if [ ! -x "$(command -v nvm)" ]; then
+        if ! command -v nvm; then
             source "${HOME}/.zshrc"
         fi
         nvm install --lts && nvm install-latest-npm && nvm alias default node
