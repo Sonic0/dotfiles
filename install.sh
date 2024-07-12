@@ -139,12 +139,6 @@ case "${DISTRO:-OS}" in
         rustup component add rls rust-analysis rust-src rustfmt clippy
     fi
 
-    # Change npm folder
-    if [ -x "$(command -v npm)" ]; then
-        mkdir -p ~/.node_modules/lib
-        npm config set prefix ~/.node_modules
-    fi
-
     printf "\e[1mIt wasn't worth installing Ubuntu... now you have to install those packages manually ¯\_(ツ)_/¯\e[0m\n
     | alacritty | https://github.com/alacritty/alacritty  | Cargo |
     | bat | https://github.com/sharkdp/bat | Cargo |
