@@ -14,6 +14,7 @@ COMPLETION_WAITING_DOTS=true
 HITS_STAMPS="dd-mm-yyyy"
 
 plugins=(
+  aws
   colored-man-pages
   colorize
   compleat
@@ -21,12 +22,14 @@ plugins=(
   dirhistory
   docker
   git
+  kubectl
   lol
   npm
   nvm
   pip
   sudo
   systemd
+  terraform
   virtualenvwrapper
   zsh-autosuggestions
   zsh-nvm
