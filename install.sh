@@ -107,6 +107,11 @@ case "${DISTRO:-OS}" in
     printf '\e[1mInstalling desired apps and tools\e[0m\n'
     sudo apt update && xargs -a ~/.config/apt_packages/ubuntu_packages.txt sudo apt install --quiet --yes
 
+    # In Debian based distros, the binary is called fdfind as the name fd is already used by another package.
+    if [ ! -x "$(command -v fd)" ]; then
+        ln -s $(which fdfind) ~/.local/bin/fd
+    fi
+
     # Install Docker
     if [ ! -x "$(command -v docker)" ]; then
         sudo install -m 0755 -d /etc/apt/keyrings
