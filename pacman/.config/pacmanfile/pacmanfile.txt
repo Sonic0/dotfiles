@@ -19,7 +19,7 @@ docker
 docker-compose
 dropbox
 efibootmgr
-exa
+eza
 fd
 firefox
 fuse-overlayfs
@@ -98,10 +98,6 @@ slurp
 speedtest-cli
 stylua
 svgo
-sway
-swaybg
-swayidle
-swaylock
 task
 termshark
 terraform
@@ -117,13 +113,11 @@ ttf-firacode-nerd
 udisks2
 unzip
 vifm
-waybar
 wf-recorder
 wget
 whois
 wireplumber
 wl-clipboard
-wofi
 workstyle-git
 xdg-desktop-portal-wlr
 xorg-xwayland

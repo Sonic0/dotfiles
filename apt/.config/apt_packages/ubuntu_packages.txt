@@ -1,7 +1,10 @@
+alacritty
 apt-transport-https
+bat
 ca-certificates
 curl
 ethtool
+eza
 fd-find
 firefox
 fonts-noto-cjk
@@ -20,9 +23,12 @@ lua5.3
 man-db
 mtr-tiny
 ncdu
+neovim
 nftables
 openssh-client
+podman
 python3-pip
+python3-virtualenvwrapper
 pulsemixer
 rclone
 ripgrep

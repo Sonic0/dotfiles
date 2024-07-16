@@ -186,9 +186,6 @@ pacu() {
             sudo apt autoremove --yes
         fi
 
-		# Update status bar indicator for pending updates
-		pkill -SIGRTMIN+8 waybar
-
 		# Update firmwares
 		if [ -x "$(command -v fwupdmgr)" ]; then
 			printf '\e[1mUpdating firmwares\e[0m\n'
@@ -215,13 +212,6 @@ pacu() {
 		fi
 		;;
 	esac
-
-	# zprezto
-	if type zprezto-update 2>/dev/null | grep -q function; then
-		printf '\e[1mUpdating zprezto\e[0m\n'
-		zprezto-update &
-		processes+=("$!")
-	fi
 
     # nvm
     if [ -x "$(command -v nvm)" ]; then
