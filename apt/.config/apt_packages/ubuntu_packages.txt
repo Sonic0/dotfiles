@@ -15,6 +15,7 @@ gimp
 git
 gnupg
 gnupg-agent
+golang
 htop
 jq
 kubectx

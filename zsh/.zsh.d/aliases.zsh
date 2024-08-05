@@ -13,3 +13,4 @@ alias bathelp='batcat --plain --language=help'
 help() {
     "$@" --help 2>&1 | bathelp
 }
+alias docker="podman"

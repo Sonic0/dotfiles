@@ -112,25 +112,6 @@ case "${DISTRO:-OS}" in
         ln -s $(which fdfind) ~/.local/bin/fd
     fi
 
-    # Install Docker
-    if [ ! -x "$(command -v docker)" ]; then
-        sudo install -m 0755 -d /etc/apt/keyrings
-        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-        sudo chmod a+r /etc/apt/keyrings/docker.asc
-        echo \
-          "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-          $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-          sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-        sudo apt-get update
-        sudo apt-get install --yes docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-        # Enable docker service and allow user to run it without sudo
-        getent group docker || groupadd docker
-        sudo usermod -aG docker "${USER}"
-        newgrp docker
-        sudo systemctl enable docker.service
-        sudo systemctl enable containerd.service
-    fi
-
     # Install aws-cli v2
     if [ ! -x "$(command -v aws)" ]; then
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -148,21 +129,12 @@ case "${DISTRO:-OS}" in
     | delta | https://github.com/dandavison/delta | Cargo |
     | topgrade | https://github.com/r-darwish/topgrade | Cargo |
     | github-cli | https://github.com/cli/cli/blob/trunk/docs/install_linux.md | Shell |
-    | go | https://golang.org/dl/ | Shell |
     | gogh | https://github.com/Mayccoll/Gogh | Shell |
-    | golang-lint | https://golangci-lint.run/usage/install/#local-installation | Shell |
     | gron | https://github.com/tomnomnom/gron | Shell |
     | trivy | https://github.com/aquasecurity/trivy | Shell |
-    | iputils | https://github.com/iputils/iputils | Shell |
     | kubectl | https://kubernetes.io/docs/tasks/tools/install-kubectl | Shell |
-    | kubectx | https://github.com/ahmetb/kubectx | Shell |
-    | nerd-font |https://github.com/ryanoasis/nerd-fonts | Shell |
-    | spotify-tui | https://github.com/Rigellute/spotify-tui | Snap/Cargo |
-    | svgo | https://github.com/svg/svgo | Snap/Cargo |
-    | terraform | https://www.terraform.io/docs/cli/install/apt.html | Shell |
-    | tflint | https://github.com/terraform-linters/tflint | Shell |
-    | Typescript | https://www.typescriptlang.org | npm |
-    | wf-recorder | https://github.com/ammen99/wf-recorder | Shell |\n"
+    | tfenv | https://github.com/tfutils/tfenv | Shell |
+    | tflint | https://github.com/terraform-linters/tflint | Shell |"
     ;;
 
 'Darwin')
