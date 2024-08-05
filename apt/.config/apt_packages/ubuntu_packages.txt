@@ -17,6 +17,7 @@ gnupg
 gnupg-agent
 htop
 jq
+kubectx
 libnotify-bin
 lnav
 lua5.3
@@ -36,6 +37,7 @@ sed
 shellcheck
 smartmontools
 software-properties-common
+solaar
 termshark
 tlp
 tlp-rdw
