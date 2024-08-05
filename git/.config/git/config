@@ -1,6 +1,6 @@
 [user]
-    name = Andrea Salvatori - IU6FZL
-    email = andrea.salvatori92@gmail.com
+    name = Andrea Salvatori
+    email = 16443598+Sonic0@users.noreply.github.com
     #signingkey = <insertFingerprintHere>
 [github]
     user = Sonic0
@@ -20,10 +20,12 @@
     ff = only
 [diff]
     tool = delta
+    colorMoved = default
 [difftool]
     prompt = false
 [merge]
     tool = delta
+    conflictstyle = diff3
 [mergetool]
     prompt = false
 [url "ssh://git@github.com/"]
