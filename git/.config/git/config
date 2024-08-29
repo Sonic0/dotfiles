@@ -2,6 +2,8 @@
     name = Andrea Salvatori
     email = 16443598+Sonic0@users.noreply.github.com
     #signingkey = <insertFingerprintHere>
+[init]
+    defaultBranch = main
 [github]
     user = Sonic0
 [commit]
