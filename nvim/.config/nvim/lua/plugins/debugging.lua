@@ -49,7 +49,6 @@ return {
     },
     {
         'mrcjkb/rustaceanvim',
-        dependencies = { "rust_analyzer" },
         version = '^5',
         lazy = false,
         ft = "rust",
