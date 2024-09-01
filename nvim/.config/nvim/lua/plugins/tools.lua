@@ -16,7 +16,10 @@ return {
     },
     {
         "jay-babu/mason-null-ls.nvim",
-        dependencies = { "williamboman/mason.nvim" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "nvimtools/none-ls.nvim",
+        },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             local mason_null_ls = require("mason-null-ls")
