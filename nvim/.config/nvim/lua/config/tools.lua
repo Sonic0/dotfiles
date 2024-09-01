@@ -28,6 +28,7 @@ return {
         "stylua",
     },
     dap = {
+        "codelldb",
         "delve",
     },
 }

@@ -1,11 +1,11 @@
 return {
     {
-        "simrat39/symbols-outline.nvim",
-        cmd = { "SymbolsOutline" },
+        "hedyhli/outline.nvim",
+        lazy = true,
+        cmd = { "Outline", "OutlineOpen" },
         keys = {
-            { "<Leader>k", "<Cmd>SymbolsOutline<CR>", desc = "Toggle code outline" },
-        },
-        config = true,
+            { "<Leader>k", "<Cmd>Outline<CR>", desc = "Toggle outline" },
+        }
     },
     "liuchengxu/vista.vim",
 }

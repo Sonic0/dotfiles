@@ -1,6 +1,6 @@
 return {
     {
-        "will133/vim-dirdiff",
+        "ZSaberLv0/ZFVimDirDiff",
         cmd = { "DirDiff" },
         config = function()
             vim.g.DirDiffExcludes =
