@@ -32,7 +32,7 @@ foreground = "#c0caf5"
 size = 12
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "MesloLGS NF"
 
 [window]
 decorations = "none"
