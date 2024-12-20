@@ -1,7 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
-vim.g.bigfile_size = 1024 * 1024 * 2.5 -- 2.5 MB
+vim.g.bigfile_size = 1024 * 1024 * 2.5 -- 2.5 MB
 vim.g.mapleader = " " -- Set leader key
 vim.g.maplocalleader = " " -- Set local leader key
 vim.opt.completeopt = "menuone,noselect" -- Have a better completion experience
