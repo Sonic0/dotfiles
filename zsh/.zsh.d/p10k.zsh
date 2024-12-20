@@ -317,10 +317,6 @@ fi
   #     '~/work(|/*)'  WORK     ''
   #     '~(|/*)'       HOME     ''
   #     '*'            DEFAULT  '')
-  typeset -g POWERLEVEL9K_DIR_CLASSES=(
-          '~/Projects(|/*)'           WORK     '(~‾▿‾)~'
-          '~(|/*)'                    HOME     '(⌐■_■)'
-          '*'                         DEFAULT  '')
   # Whenever the current directory is ~/work or a subdirectory of ~/work, it gets styled with one
   # of the following classes depending on its writability and existence: WORK, WORK_NOT_WRITABLE or
   # WORK_NON_EXISTENT.
@@ -353,7 +349,10 @@ fi
   # parameter. For example, if POWERLEVEL9K_DIR_WORK_NOT_WRITABLE_FOREGROUND is not set, it falls
   # back to POWERLEVEL9K_DIR_FOREGROUND.
   #
-  typeset -g POWERLEVEL9K_DIR_CLASSES=()
+  typeset -g POWERLEVEL9K_DIR_CLASSES=(
+          '~/Projects(|/*)'           WORK     '(~‾▿‾)~'
+          '~(|/*)'                    HOME     '(⌐■_■)'
+          '*'                         DEFAULT  '')
 
   # Custom prefix.
   # typeset -g POWERLEVEL9K_DIR_PREFIX='in '
