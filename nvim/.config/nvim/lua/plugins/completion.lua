@@ -8,6 +8,7 @@ return {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-vsnip",
+            "hrsh7th/cmp-emoji",
             "hrsh7th/vim-vsnip",
             "onsails/lspkind-nvim",
         },
@@ -19,6 +20,8 @@ return {
                 { name = "nvim_lsp" },
                 { name = "path" },
                 { name = "buffer" },
+                { name = "emoji" },
+                { name = "vsnip" },
             }
 
             cmp.setup({

@@ -67,29 +67,5 @@ return {
                 end,
             })
         end,
-    },
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        event = "VeryLazy",
-        config = function()
-            local null_ls = require("null-ls")
-            null_ls.setup({
-                -- Sources can be configured in config/tools.lua
-                -- Format on save
-                on_attach = function(client, bufnr)
-                    if client.supports_method("textDocument/formatting") then
-                        vim.api.nvim_clear_autocmds({ group = formatting_group, buffer = bufnr })
-                        vim.api.nvim_create_autocmd("BufWritePre", {
-                            group = formatting_group,
-                            buffer = bufnr,
-                            callback = function()
-                                vim.lsp.buf.format({ timeout_ms = 5000 })
-                            end,
-                        })
-                    end
-                end,
-            })
-        end,
-    },
+    }
 }
