@@ -1,10 +1,19 @@
 return {
     {
         "folke/trouble.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        cmd = { "Trouble" },
         keys = {
-            { "<Leader>s", "<Cmd>TroubleToggle workspace_diagnostics<CR>", desc = "Toggle diagnostics" },
+            {
+                "<Leader>s",
+                "<Cmd>Trouble diagnostics toggle<CR>",
+                desc = "Toggle workspace diagnostics (Trouble)",
+            },
+            {
+                "<Leader>sd",
+                "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>",
+                desc = "Toggle buffer diagnostics (Trouble)",
+            },
         },
-        config = true,
+        opts = {}, -- use trouble.nvim v3 defaults
     },
 }

@@ -4,8 +4,8 @@ return {
         lazy = true,
         cmd = { "Outline", "OutlineOpen" },
         keys = {
-            { "<Leader>k", "<Cmd>Outline<CR>", desc = "Toggle outline" },
-        }
+            { "<Leader>k", "<Cmd>Outline<CR>", desc = "Toggle code outline" },
+        },
+        opts = {}, -- use outline.nvim defaults
     },
-    "liuchengxu/vista.vim",
 }

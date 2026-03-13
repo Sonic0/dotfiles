@@ -1,13 +1,16 @@
 return {
     {
+        "LazyVim/LazyVim",
+        opts = {
+            colorscheme = "tokyonight",
+        },
+    },
+    {
         "folke/tokyonight.nvim",
         lazy = true,
         priority = 1000,
-        config = function()
-            require("tokyonight").setup({
-                style = "night",
-            })
-            vim.api.nvim_command("colorscheme tokyonight")
-        end,
+        opts = {
+            style = "night",
+        },
     },
 }

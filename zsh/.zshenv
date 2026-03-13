@@ -4,6 +4,7 @@ path+=("${HOME}/.node_modules/bin")
 path+=("${HOME}/.cargo/bin")
 path+=("${HOME}/.cargo/env")
 path+=("${HOME}/go/bin")
+path+=("${HOME}/.krew/bin")
 export PATH
 
 # Prefer US English and use UTF-8

@@ -1,19 +1,20 @@
+-- Testing (neotest)
+-- neotest-go is now maintained under the nvim-neotest org.
+-- neotest-vim-test still exists but is a heavy fallback; keep only if you
+-- rely on vim-test adapters for languages not covered by neotest natively.
+
 return {
     {
         "nvim-neotest/neotest",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
-            "nvim-neotest/neotest-vim-test",
             "vim-test/vim-test",
-            "nvim-neotest/neotest-go",
         },
         keys = {
             {
                 "<Leader>tn",
-                function()
-                    require("neotest").run.run()
-                end,
+                function() require("neotest").run.run() end,
                 desc = "Run nearest test",
             },
             {
@@ -32,14 +33,17 @@ return {
                 end,
                 desc = "Run all tests in suite",
             },
+            {
+                "<Leader>tu",
+                function() require("neotest").summary.toggle() end,
+                desc = "Toggle test summary UI",
+            },
         },
         config = function()
-            local neotest = require("neotest")
-
-            neotest.setup({
+            require("neotest").setup({
                 icons = {
-                    failed = "󰅚",
-                    passed = "󰗡",
+                    failed  = "󰅚",
+                    passed  = "󰗡",
                     running = "󰐍",
                     unknown = "󰘥",
                 },
@@ -48,10 +52,6 @@ return {
                     require("neotest-vim-test")({ ignore_filetypes = { "go" } }),
                 },
             })
-
-            vim.keymap.set("n", "<Leader>tu", function()
-                neotest.summary.toggle()
-            end, { desc = "Toggle testing UI" })
         end,
     },
 }

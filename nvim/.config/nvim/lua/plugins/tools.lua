@@ -2,13 +2,14 @@ local tools = require("config.tools")
 
 return {
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         build = ":MasonUpdate",
-        config = true,
+        lazy = false,
+        opts = {},
     },
     {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "williamboman/mason.nvim" },
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = { "mason-org/mason.nvim" },
         event = "VeryLazy",
         opts = {
             ensure_installed = tools.lsp,
@@ -16,7 +17,7 @@ return {
     },
     {
         "jay-babu/mason-nvim-dap.nvim",
-        dependencies = { "williamboman/mason.nvim" },
+        dependencies = { "mason-org/mason.nvim" },
         event = { "BufReadPre", "BufNewFile" },
         opts = {
             ensure_installed = tools.dap,
@@ -25,8 +26,8 @@ return {
     },
     {
         "RubixDev/mason-update-all",
-        dependencies = { "williamboman/mason.nvim" },
+        dependencies = { "mason-org/mason.nvim" },
         cmd = { "MasonUpdateAll" },
-        config = true,
+        opts = {},
     },
 }

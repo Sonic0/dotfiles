@@ -13,11 +13,9 @@ return {
         "lua_ls",
         "svelte",
         "terraformls",
-        "tsserver",
         "yamlls",
     },
     linter = {
-        "flake8",
         "hadolint",
     },
     formatter = {
